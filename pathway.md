@@ -9,6 +9,7 @@
   - TypeScript (Optional)
   - Hardhat
   - OpenZeplin Contracts
+  - [ethers.js](https://github.com/ethers-io/ethers.js)
 - ERC20
 - ERC721 & ERC1155
 - EVM
