@@ -7,7 +7,7 @@
 - Tools & Frameworks
   - Node.js & Javascript & ES & CommonJS
   - TypeScript (Optional)
-  - Hardhat
+  - [Hardhat](https://github.com/NomicFoundation/hardhat)
   - [OpenZeplin Contracts](https://docs.openzeppelin.com/contracts/4.x/)
   - [ethers.js](https://github.com/ethers-io/ethers.js)
 - ERC20
