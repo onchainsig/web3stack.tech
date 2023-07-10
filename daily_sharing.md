@@ -8,6 +8,10 @@ Record the very good resources that you encounter in the learning process, which
 
 This guide explain how data stored on smart contracts.
 
+- [Hello World Smart Contract](https://docs.alchemy.com/docs/hello-world-smart-contract)
+
+This is a step-by-step introductory tutorial that will teach you how to create and deploy a smart contract on Ethereum.
+
 ## EVM Topic
 
 ...
