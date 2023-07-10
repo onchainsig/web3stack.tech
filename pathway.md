@@ -9,6 +9,8 @@
   - TypeScript (Optional)
   - Hardhat
   - OpenZeplin Contracts
+- ERC20
+- ERC721 & ERC1155
 - EVM
 
 ## Reference
