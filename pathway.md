@@ -1,5 +1,16 @@
 # Pathway
 
+## Learning Smart Contracts
+
+- Learn what a smart contract is
+- Solidity basic syntax
+- Tools & Frameworks
+  - Node.js & Javascript & ES & CommonJS
+  - TypeScript (Optional)
+  - Hardhat
+  - OpenZeplin Contracts
+- EVM
+
 ## Reference
 
 - [Learn web3 dapp](https://github.com/figment-networks/learn-web3-dapp)
