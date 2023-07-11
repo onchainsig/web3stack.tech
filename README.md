@@ -11,6 +11,10 @@ When we write a contract, we don't want to write all the code from scratch, so i
 - [Learning pathway](pathway.md)
 - More ...
 
+## Backlog 
+
+- [ ] How to compile a solidity contract ?
+
 ## Contribute
 
 You can contribute if you want.
