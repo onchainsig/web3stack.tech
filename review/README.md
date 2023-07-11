@@ -9,3 +9,7 @@ Review the learning of smart contracts.
 TODO: Add something here ...
 
 - Key path: hardhat -> ethers.js
+- Hardhat
+  - Tasks
+  - Scripts
+  - Plugins
