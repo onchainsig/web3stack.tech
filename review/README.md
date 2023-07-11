@@ -6,4 +6,6 @@ Review the learning of smart contracts.
 
 ### 2023-07-14
 
-Add something here...
+TODO: Add something here ...
+
+- Key path: hardhat -> ethers.js
