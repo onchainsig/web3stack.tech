@@ -24,6 +24,9 @@ Today we do our first review.
 - Smart Contract
   - Solidity Basics
   - ERC20 Contract Standard & Implementation
+    - Initial Supply & Increase Supply & Decrease Supply
+    - [ERC20.sol](https://github.com/OpenZeppelin/openzeppelin-contracts/blob/release-v4.7/contracts/token/ERC20/ERC20.sol)
+    - *able
 - Others
   - EVM Specification
   - Node.js & npm & npx
