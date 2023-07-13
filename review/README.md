@@ -17,6 +17,7 @@ Today we do our first review.
   - Scripts
   - Plugins
   - Node & Local Network
+  - Compile, Deployment, Interaction etc.
 - OpenZeplin Contracts
   - Library
   - ERC20 Token Implementation
