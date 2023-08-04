@@ -2,6 +2,10 @@
 
 Record the very good resources that you encounter in the learning process, which may be the answers to your doubts, or may be the easy-to-understand explanations ...
 
+## Trending
+
+- [Web3 Development Report (Q2 2023)](https://www.alchemy.com/blog/web3-developer-report-q2-2023)
+
 ## Contract Topic
 
 - [What is smart contract storage layout ?](https://docs.alchemy.com/docs/smart-contract-storage-layout)
