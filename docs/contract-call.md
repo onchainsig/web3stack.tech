@@ -2,6 +2,12 @@
 
 任何有需要和其他合约交互的时候，合约调用就会被使用。现总结一下都有哪些合约调用方式以及使用的场景等。
 
+1. 使用合约代码
+2. 使用接口合约
+3. call
+4. delegatecall
+5. staticcall
+
 ## 使用合约代码
 
 有些时候我们需要写一个代理合约去掉用另一个实际执行逻辑的合约，这样带来的好处是可以在不改变合约地址的情况下对合约进行升级。
@@ -124,9 +130,162 @@ contract InterfaceCall {
 
 ## 使用 call
 
+call 是一个 low level 的成员函数，用来与其他合约交互：
 
+1. 返回值是 (bool, data) 这样的元祖
+2. call是solidity官方推荐的通过触发fallback或receive函数发送ETH的方法
+3. 不推荐用call来调用另一个合约，因为当你调用不安全合约的函数时，你就把主动权交给了它。推荐的方法仍是声明合约变量后调用函数
+4. 当我们不知道对方合约的源代码或 ABI，就没法生成合约变量；这时，我们仍可以通过call调用对方合约的函数
 
-## 使用 deletecall
+call 的使用方式：`目标合约地址.call(abi.encodeWithSignature("函数签名", 逗号分隔的参数))`，比如 `usdtAddress.call(abi.encodeWithSignature("transfer(address,uint256)", "0xcD6a42782d230D7c13A74ddec5dD140e55499Df9", 20000))`；
+
+当然在调用的时候也可以指定 ETH 和 Gas，比如 `usdtAddress.call{ value: msg.value, gas: 20000 }(abi.encodeWithSignature("transfer(address,uint256)", "0xcD6a42782d230D7c13A74ddec5dD140e55499Df9", 20000))`
+
+首先，我们还是使用上面的那个 `EthHolder` 合约，部署:
+
+```solidity
+// SPDX-License-Identifier: MIT
+
+pragma solidity >=0.8.7 <0.9.0;
+
+contract EthHolder {
+    uint256 private state;
+
+    mapping(address => uint256) _balances;
+
+    event Log(uint amount, uint gas);
+
+    event TriggerFallback(address sender, uint value);
+
+    receive() external payable {
+        receiveEth();
+    }
+
+    fallback() external payable {
+        receiveEth();
+    }
+
+    function receiveEth() internal {
+        _balances[msg.sender] += msg.value;
+        emit TriggerFallback(msg.sender, msg.value);
+    }
+
+    function getEthBalance(address _addr) external view returns (uint256 value) {
+        value = _balances[_addr];
+    }
+
+    function getBalance() view public returns (uint) {
+        return address(this).balance;
+    }
+
+    function setStateAndSendEth(uint256 _s) external payable {
+        state = _s;
+
+        if (msg.value > 0) {
+            emit Log(msg.value, gasleft());
+        }
+    }
+
+    function getState() external view returns (uint s) {
+        s = state;
+    }
+}
+```
+
+然后，我们写一个使用 call 的代理合约调用 `EthHolder`:
+
+```solidity
+// SPDX-License-Identifier: MIT
+
+pragma solidity >=0.8.7 <0.9.0;
+
+contract Call {
+    event Response(bool success, bytes data);
+
+    function proxyDoCall(address payable _addr, uint256 _s) external payable {
+        (bool success, bytes memory data) = _addr.call{ value: msg.value }(
+            abi.encodeWithSignature("setStateAndSendEth(uint256)", _s)
+        );
+
+        emit Response(success, data);
+    }
+
+    function proxyOtherCall(address _addr) external payable {
+        require(_addr != address(0), "bad address");
+        (bool success, bytes memory data) = _addr.call{ value: msg.value }(abi.encodeWithSignature("someMethod(uint256)"));
+        emit Response(success, data);
+    }
+}
+```
+
+call 不是调用合约的推荐方法，存在安全风险；但是在不知道合约代码和 ABI 的情况下，也可以调用目标合约。
+
+对于 call，重要的是上下文传递：用户 A -> 合约 B -> 合约 C
+
+- 对于合约 B，msg.sender 是 A, msg.value 是 A 的
+- 对于合约 C, msg.sender 是 B, msg.value 是 B 的
+
+从这个关系我们可以推出：当用户调用 `Call.proxyOtherCall` 的时候，并且发送了 ETH，那么在 `EthHolder` 的 `_balances` 中存储的 address 都是 `Call` 合约的地址，而不是 A 的，查询 A 的地址获得的余额是 0。
+
+## 使用 delegatecall
+
+deletecall 是类似 call 的另一个可以调用合约的方式，不同点是他们对于上下文的处理不同，还是 用户 A -> 合约 B -> 合约 C
+
+- 对于合约 B, msg.sender 是 A, msg.value 是 A 的
+- 对于合约 C, msg.sender 是 A， msg.value 是 A 的
+
+这个就是 delegatecall，context 传递了下去；此外，调用方式和 call 类似，就不做过多赘述。
+
+此外，**对于代理合约，状态变量是存在代理合约中的，函数逻辑在实际的目标合约**。
+
+主要用途是合约的代理模式实现，代理合约。
+
+```
+// SPDX-License-Identifier: MIT
+
+pragma solidity >=0.8.7 <0.9.0;
+
+contract Target {
+    uint256 public state;
+    mapping(address => uint256) private _balances;
+
+    event Receive(address sender, uint256 value);
+
+    function updateState(uint256 _s) external payable {
+        state = _s;
+
+        if (msg.value > 0) {
+            _balances[msg.sender] += msg.value;
+        }
+
+        emit Receive(msg.sender, msg.value);
+    }
+
+    function getBalance(address _addr) view external returns (uint256) {
+        require(_addr != address(0), "bad address");
+        return _balances[_addr];
+    }
+}
+
+contract DelegateCall {
+
+    uint256 public state;
+    mapping(address => uint256) private _balances;
+
+    function updateState(address _addr, uint256 _s) external payable {
+        (bool success, ) = _addr.delegatecall(abi.encodeWithSignature("updateState(uint256)", _s));
+        require(success, "bad call");
+    }
+
+    function getBalance(address _addr) view external returns (uint256) {
+        require(_addr != address(0), "bad address");
+        return _balances[_addr];
+    }
+
+}
+```
+
+部署合约，并验证后可以发现，所有的状态都在 DelegateCall 合约中，Target 中的变量是没有被改变的。
 
 ## 使用 staticcall
 
