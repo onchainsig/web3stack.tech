@@ -11,9 +11,10 @@ When we write a contract, we don't want to write all the code from scratch, so i
 - [Learning pathway](pathway.md)
 - More ...
 
-## Backlog 
+## Reference & Resources
 
-- [ ] How to compile a solidity contract ?
+- [WTF academy](https://www.wtf.academy/)
+- [Solidity 8.0](https://www.bilibili.com/video/BV1oZ4y1B7WS/) by 崔棉大师
 
 ## Contribute
 
