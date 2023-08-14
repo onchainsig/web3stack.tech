@@ -13,8 +13,19 @@ When we write a contract, we don't want to write all the code from scratch, so i
 
 ## Reference & Resources
 
+### Infra framework, tools, library
+
+- [OpenZeppelin Contracts](https://www.openzeppelin.com/contracts)
+- [Hardhat](https://hardhat.org/)
+
+### Solidity
+
 - [WTF academy](https://www.wtf.academy/)
 - [Solidity 8.0](https://www.bilibili.com/video/BV1oZ4y1B7WS/) by 崔棉大师
+
+### Security
+
+- [Smart Contract Security](security.md)
 
 ## Contribute
 
