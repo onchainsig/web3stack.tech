@@ -240,7 +240,7 @@ deletecall 是类似 call 的另一个可以调用合约的方式，不同点是
 
 主要用途是合约的代理模式实现，代理合约。
 
-```
+```solidity
 // SPDX-License-Identifier: MIT
 
 pragma solidity >=0.8.7 <0.9.0;
@@ -289,4 +289,58 @@ contract DelegateCall {
 
 ## 使用 staticcall
 
- 
+staticcall 只能读取，不同于 call。
+
+**MultiCall**: 对一个或多个合约的一次或多次调用打包在一个交易中进行调用，好处是在对合约进行几十次调用时可以在一个交易中完成；可以屏蔽掉区块链 rpc 的限制等问题。
+
+```solidity
+// SPDX-License-Identifier: MIT
+
+pragma solidity >=0.8.7 <0.9.0;
+
+contract Erc20 {
+
+    mapping(address => uint256) private _balances;
+    string private symbol;
+
+    event Transfer(address from, address to, uint256 amount);
+
+    constructor(string memory symbol_) {
+        symbol = symbol_;
+    }
+
+    function balanceOf(address _addr) view external returns (uint256, uint) {
+        return (_balances[_addr], block.timestamp);
+    }
+
+    function transfer(address _addr, uint256 amount) external {
+        _balances[_addr] += amount;
+        emit Transfer(msg.sender, _addr, amount);
+    }
+
+    function getInputData(address _addr) external pure returns (bytes memory) {
+        return abi.encodeWithSelector(this.balanceOf.selector, _addr);
+    }
+}
+
+contract Multicall {
+
+    function doCall(address[] calldata targets, bytes[] calldata data) external view returns (bytes[] memory) {
+        require(targets.length == data.length, "arg length not match");
+        bytes[] memory results = new bytes[](data.length);
+
+        for (uint i = 0; i < data.length; i++) {
+            // 这里使用 staticcall
+            (bool success, bytes memory r) = targets[i].staticcall(data[i]); 
+            require(success, "bad call");
+            results[i] = r;
+        }
+
+        return results;
+    }
+}
+```
+
+在 Multicall 合约里可以对多个合约进行调用，并且返回编码后的数据。
+
+
