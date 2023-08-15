@@ -32,6 +32,7 @@ When we write a contract, we don't want to write all the code from scratch, so i
 - [WTF academy](https://www.wtf.academy/)
   - 有时候网站更新不及时，可以看 [Github](https://github.com/AmazingAng/WTF-Solidity)
 - [Solidity 8.0](https://www.bilibili.com/video/BV1oZ4y1B7WS/) by 崔棉大师
+- [WTF Solidity gas optimization techniques, verified with Foundry](https://github.com/WTFAcademy/WTF-gas-optimization)
 
 ### Security
 
