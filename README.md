@@ -19,6 +19,8 @@ When we write a contract, we don't want to write all the code from scratch, so i
 - [Hardhat](https://hardhat.org/)
 - [foundry](https://github.com/foundry-rs/foundry)
   - [foundary book](https://book.getfoundry.sh/)
+- [OpenChain](https://openchain.xyz/) 可以查询 signature, 编解码 abi，交易跟踪等
+  - [Source code](https://github.com/openchainxyz/openchain-monorepo)
 
 ### Solidity
 
