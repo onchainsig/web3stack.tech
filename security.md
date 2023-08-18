@@ -19,3 +19,15 @@ We found some information about contract security, which is maintained below.
 - [DeFi Hack Labs](https://github.com/SunWeb3Sec/DeFiHackLabs) - Reproduce DeFi hack incidents using Foundry.
 
 - [Blockchain Dark Forest Selfguard Handbook](https://darkhandbook.io/)
+
+- Useful
+
+1. https://phalcon.blocksec.com/
+2. https://tx.eth.samczsun.com/
+3. https://eigenphi.io/mev/eigentx
+4. https://library.dedaub.com/decompile
+5. https://ethervm.io/decompile
+6. https://github.com/Jon-Becker/heimdall-rs
+7. https://github.com/eveem-org/panoramix
+8. https://ctf.dragonfly.xyz/
+9. https://academy.quillaudits.com/challenges
