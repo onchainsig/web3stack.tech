@@ -34,6 +34,10 @@ When we write a contract, we don't want to write all the code from scratch, so i
 - [Solidity 8.0](https://www.bilibili.com/video/BV1oZ4y1B7WS/) by 崔棉大师
 - [WTF Solidity gas optimization techniques, verified with Foundry](https://github.com/WTFAcademy/WTF-gas-optimization)
 
+**小工具**
+
+- [Upgradehub](https://upgradehub.xyz/) - View proxy contract.
+
 ### Security
 
 - [Smart Contract Security](security.md)
