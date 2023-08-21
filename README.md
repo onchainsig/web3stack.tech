@@ -18,6 +18,10 @@ When we write a contract, we don't want to write all the code from scratch, so i
 
 - [WTF Javascript](https://github.com/WTFAcademy/WTF-JavaScript)
 
+## Guide
+
+- [Web3 DApp 最佳编程实践指南](https://guoyu.mirror.xyz/RD-xkpoxasAU7x5MIJmiCX4gll3Cs0pAd5iM258S1Ek) - 很不错的文章
+
 ### Infra framework, tools, library
 
 - [OpenZeppelin Contracts](https://www.openzeppelin.com/contracts)
