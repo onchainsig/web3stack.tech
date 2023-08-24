@@ -22,3 +22,7 @@ input data 是调用合约时需要传给合约的参数，比如 0xa9059cbb0000
 5. 构造出一个结构体返回：{name: xxx, params: [...]}
   1. 剩下的就简单了，遍历解析后的对象，构造 params
 ```
+
+## Java - evm abi decoder
+
+原理和上面的类似，都是要先有 abi 的定义，然后才能做 decode .
