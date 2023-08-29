@@ -44,6 +44,11 @@ When we write a contract, we don't want to write all the code from scratch, so i
 
 - [Upgradehub](https://upgradehub.xyz/) - View proxy contract.
 
+### Golang
+
+- [Ethereum Golang API, JSON-RPC client, Smart contract transaction API](https://github.com/chenzhijie/go-web3)
+- [golang-web3](https://github.com/mover-code/golang-web3)
+
 ### Security
 
 - [Smart Contract Security](security.md)
