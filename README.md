@@ -47,6 +47,10 @@ When we write a contract, we don't want to write all the code from scratch, so i
 
 - [Smart Contract Security](security.md)
 
+### Explorer
+
+- [blockscout](https://github.com/blockscout/blockscout) - Blockchain explorer for Ethereum based network and a tool for inspecting and analyzing EVM based blockchains.
+
 ## Contribute
 
 You can contribute if you want.
