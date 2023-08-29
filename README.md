@@ -38,6 +38,7 @@ When we write a contract, we don't want to write all the code from scratch, so i
 - [Solidity 8.0](https://www.bilibili.com/video/BV1oZ4y1B7WS/) by 崔棉大师
   - [Solidity by Example](https://solidity-by-example.org/)
 - [WTF Solidity gas optimization techniques, verified with Foundry](https://github.com/WTFAcademy/WTF-gas-optimization)
+- [Web3 Tutorials Overview](https://docs.alchemy.com/docs) - Alchemy, learn How to Build Anything in Web3. Whether you're new to Web3 or an expert Shadowy Super Coder - learn how to get started and level up your development with endless Web3 tutorials and guides.
 
 **小工具**
 
