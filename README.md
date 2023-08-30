@@ -9,7 +9,7 @@ When we write a contract, we don't want to write all the code from scratch, so i
 - [Daily sharing](daily_sharing.md)
 - [Smart contract security](security.md)
 - [Learning pathway](pathway.md)
-- [EVM](evm.md)
+- [EVM](docs/evm/Readme.md)
 - More ...
 
 ## Reference & Resources
