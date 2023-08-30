@@ -12,3 +12,18 @@
 - [The Ethereum Virtual Machine — How does it work?](https://medium.com/mycrypto/the-ethereum-virtual-machine-how-does-it-work-9abac2b7c9e)
 - [What is Smart Contract Storage Layout?](https://docs.alchemy.com/docs/smart-contract-storage-layout)
 - [WTF EVM Opcodes](https://github.com/WTFAcademy/WTF-EVM-Opcodes)
+- [Ethereum EVM illustrated by Takenobu T.](https://github.com/takenobu-hs/ethereum-evm-illustrated)
+- [Demystifying Ethereum Assembly by Joshua Riley](https://www.youtube.com/watch?v=btDOvn8pLkA)
+- [evm-opcodes](https://github.com/wolflo/evm-opcodes)
+- [evm-from-scratch](https://github.com/w1nt3r-eth/evm-from-scratch)
+- [evm.codes](https://evm.codes/)
+
+## EVM 基础
+
+EVM 的基本架构主要包括堆栈，内存，存储，EVM字节码，和燃料费。
+
+![EVM Arch](../img/evm-1.png)
+
+EVM 基本的执行流程：
+
+![EVM Flow](../img/evm-2.png)
