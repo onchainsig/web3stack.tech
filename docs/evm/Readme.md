@@ -11,3 +11,4 @@
 
 - [The Ethereum Virtual Machine — How does it work?](https://medium.com/mycrypto/the-ethereum-virtual-machine-how-does-it-work-9abac2b7c9e)
 - [What is Smart Contract Storage Layout?](https://docs.alchemy.com/docs/smart-contract-storage-layout)
+- [WTF EVM Opcodes](https://github.com/WTFAcademy/WTF-EVM-Opcodes)
