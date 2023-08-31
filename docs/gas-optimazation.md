@@ -4,6 +4,12 @@ Gas 优化是一个需要注重细节的事情，我们得需要知道怎么做�
 
 [WTF Gas Optimization](https://github.com/WTFAcademy/WTF-gas-optimization) 总结了智能合约省 gas 的技巧，可以详细学习。
 
+**gas 优化的几大原则**
+
+- 访问 storage 比访问 memory 更耗费 gas
+- 对于入参，从 calldata 里取一般更节约 gas，因为少了一次 copy
+- TODO ...
+
 ## 一个小例子
 
 ```solidity
