@@ -45,7 +45,6 @@ calldata: 123, 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4, [10, 9, 8], ["BTCUSDT
 encoded: 0x000000000000000000000000000000000000000000000000000000000000007b0000000000000000000000005b38da6a701c568545dcfcb03fcb875f56beddc4000000000000000000000000000000000000000000000000000000000000008000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000003000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000009000000000000000000000000000000000000000000000000000000000000000800000000000000000000000000000000000000000000000000000000000000600000000000000000000000000000000000000000000000000000000000000064000000000000000000000000000000000000000000000000000000000000000100000000000000000000000000000000000000000000000000000000000000074254435553445400000000000000000000000000000000000000000000000000
 ```
 
-
 ## 其他编程语言的方式
 
 参考资源：
@@ -78,6 +77,60 @@ input data 是调用合约时需要传给合约的参数，比如 0xa9059cbb0000
 ### Golang - abi decoder
 
 [abi-decoder](github.com/mingjingc/abi-decoder)
+
+## Hash 运算
+
+```solidity
+// SPDX-License-Identifier: MIT
+
+pragma solidity >=0.8.7 <0.9.0;
+
+contract HashFunc {
+    function hash(
+        string memory _text, uint _num, address _addr
+    ) external pure returns (bytes32) {
+        return keccak256(abi.encodePacked(_text, _num, _addr));
+    }
+
+    function methodSignature(
+        string memory func
+    ) external pure returns (bytes32) {
+        return keccak256(abi.encodePacked(func));
+    }
+
+    function methodSelector(
+        string memory _func
+    ) external pure returns (bytes4) {
+        // return keccak256(abi.encodePacked(func));
+        return bytes4(keccak256(bytes(_func)));
+    }
+
+    function encode(
+        string memory _text1, string memory _text2
+    ) external pure returns (bytes memory) {
+        return abi.encode(_text1, _text2);
+    }
+
+    function encodePacked(
+        string memory _text1, string memory _text2
+    ) external pure returns (bytes memory) {
+        return abi.encodePacked(_text1, _text2);
+    }
+    
+}
+```
+
+`methodSignature` 可以计算函数的签名，比如输入 `transfer(address,uint256)` 返回 `0xa9059cbb2ab09eb219583f4a59a5d0623ade346d962bcd4e46b11da047c9049b`.
+
+`methodSelector` 可以计算函数的选择器，比如输入 `transfer(address,uint256)` 返回 `0xa9059cbb`.
+
+有几个内置的方法可以看看：
+
+- abi.encode
+- abi.encodePacked
+- abi.encodeWithSignature
+
+具体参考：[abi 编解码](https://docs.soliditylang.org/zh/latest/units-and-global-variables.html#abi)
 
 ## 总结
 
