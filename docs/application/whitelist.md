@@ -7,3 +7,7 @@
 1. 在合约中使用 mapping 存储
 2. 使用 Markel Tree
 3. 结合后端服务
+
+这三种方式中，方式 2 是比较好的解决方案
+
+## Markel Tree 原理
