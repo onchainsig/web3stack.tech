@@ -6,11 +6,15 @@ When we write a contract, we don't want to write all the code from scratch, so i
 
 ## Topics
 
-- [Daily sharing](daily_sharing.md)
+- [Trending](trending.md)
 - [Smart contract security](security.md)
 - [Learning pathway](pathway.md)
-- [EVM](docs/evm/Readme.md)
-- More ...
+- [EVM](docs/evm/README.md)
+- [Docs](docs/README.md)
+- Practice
+  - hardhat_tutorial
+  - foundry_guide
+  - nodejs_guide
 
 ## Reference & Resources
 

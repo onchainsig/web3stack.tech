@@ -17,6 +17,7 @@
 - [evm-opcodes](https://github.com/wolflo/evm-opcodes)
 - [evm-from-scratch](https://github.com/w1nt3r-eth/evm-from-scratch)
 - [evm.codes](https://evm.codes/)
+- Deep in EVM: [1](https://mirror.xyz/xyyme.eth/GNVcUgKAOEiLyClKeqkmD35ctLu6_XomT3ZDIfV3tz8), [2](https://mirror.xyz/xyyme.eth/6vqE2DRsMzlPNmh3kYiwTdMBj-9hanmxyDuTHM7tZDU), [3](https://mirror.xyz/xyyme.eth/dsU7KoQLyqiHrY0bQX2ETq1zkDYiW-3PtzxfzGwRdss)
 
 ## EVM 基础
 
