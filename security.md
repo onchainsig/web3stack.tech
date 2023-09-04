@@ -8,6 +8,10 @@ Anyone is welcome to contribute…
 
 We found some information about contract security, which is maintained below.
 
+- [以太坊智能合约 —— 最佳安全开发指南](https://github.com/ConsenSys/smart-contract-best-practices/blob/master/README-zh.md)
+
+https://consensys.github.io/smart-contract-best-practices/
+
 - [Web3 project security practice requirements](https://github.com/slowmist/Web3-Project-Security-Practice-Requirements)
 
 - [Web3 security tools](https://github.com/Quillhash/Web3-Security-Tools)
