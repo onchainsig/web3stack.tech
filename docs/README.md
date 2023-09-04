@@ -16,3 +16,7 @@ Overview
 ## EVM
 
 - [EVM](evm/Readme.md)
+
+## Application
+
+- [Smart Contract Whitelist](application/whitelist.md)
