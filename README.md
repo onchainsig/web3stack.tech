@@ -29,6 +29,7 @@ When we write a contract, we don't want to write all the code from scratch, so i
 ### Infra framework, tools, library
 
 - [OpenZeppelin Contracts](https://www.openzeppelin.com/contracts)
+- [solmate contracts](https://github.com/transmissions11/solmate) - Modern, opinionated, and gas optimized building blocks for smart contract development.
 - [Hardhat](https://hardhat.org/)
 - [foundry](https://github.com/foundry-rs/foundry)
   - [foundary book](https://book.getfoundry.sh/)
