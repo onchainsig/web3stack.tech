@@ -24,7 +24,7 @@ When we write a contract, we don't want to write all the code from scratch, so i
 
 ## Guide
 
-- [Web3 DApp 最佳编程实践指南](https://guoyu.mirror.xyz/RD-xkpoxasAU7x5MIJmiCX4gll3Cs0pAd5iM258S1Ek) - 很不错的文章
+- [Web3 DApp 最佳编程实践指南](https://guoyu.mirror.xyz/RD-xkpoxasAU7x5MIJmiCX4gll3Cs0pAd5iM258S1Ek) - A nice blog.
 
 ### Infra framework, tools, library
 
@@ -33,7 +33,7 @@ When we write a contract, we don't want to write all the code from scratch, so i
 - [Hardhat](https://hardhat.org/)
 - [foundry](https://github.com/foundry-rs/foundry)
   - [foundary book](https://book.getfoundry.sh/)
-- [OpenChain](https://openchain.xyz/) 可以查询 signature, 编解码 abi，交易跟踪等
+- [OpenChain](https://openchain.xyz/) We can query all signatures, decode / encode abi，transaction etc.
   - [Source code](https://github.com/openchainxyz/openchain-monorepo)
 
 ### Solidity
