@@ -10,7 +10,7 @@ Overview
 
 - [Call, Delegatecall ect.](contract-call.md) - 合约调用的几种方式
 - [Proxy & Upgradable contract](proxy-and-upgradable-contract.md) - 代理合约与可升级合约
-- [abi encode and decode](abi-decode-method-signature.md) - abi 的编码解码以及函数签名
+- [abi encode and decode / input data decoding](abi-decode-method-signature.md) - abi 的编码解码以及函数签名
 - [Gas Optimizatioin](gas-optimization.md) - 学习如何做 Gas 优化
 
 ## abi

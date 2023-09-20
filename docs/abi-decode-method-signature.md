@@ -54,6 +54,7 @@ encoded: 0x000000000000000000000000000000000000000000000000000000000000007b00000
 - [Node - eth calldata decoder](https://github.com/apoorvlathey/eth-calldata-decoder)
 - [https://apoorv.xyz/](https://apoorv.xyz/)
 - [alchemy abi-tools](https://www.alchemy.com/best/abi-tools)
+- [Python package with core transaction decoding functions](https://github.com/EthTx/ethtx) - www.ethtx.info UI 端
 
 ### Node - evm abi decoder
 

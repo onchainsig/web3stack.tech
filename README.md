@@ -36,6 +36,10 @@ When we write a contract, we don't want to write all the code from scratch, so i
 - [OpenChain](https://openchain.xyz/) We can query all signatures, decode / encode abi，transaction etc.
   - [Source code](https://github.com/openchainxyz/openchain-monorepo)
 
+### 链上分析工具
+
+[On-Chain Analysis](on-chain-analysis.md)
+
 ### Solidity
 
 - [WTF academy](https://www.wtf.academy/)
