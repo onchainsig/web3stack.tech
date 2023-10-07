@@ -4,7 +4,7 @@
 
 - [Phalcon](https://phalcon.xyz/)
 - [Ethtx](https://ethtx.info/)
-- [Tenderly](https://dashboard.tenderly.co/explorer)
+- [Tenderly](https://dashboard.tenderly.co/explorer) - [Tenderly docs](https://docs.tenderly.co/)
 - [Openchain.xyz](https://openchain.xyz/trace) - [Github](https://github.com/openchainxyz/openchain-monorepo) and [abi-guesser](https://github.com/openchainxyz/abi-guesser)
 
 ## Signature Database

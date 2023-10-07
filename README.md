@@ -49,6 +49,7 @@ When we write a contract, we don't want to write all the code from scratch, so i
 - [Eat the blocks](https://github.com/jklepatch/eattheblocks) - Some demo code for Eat the Blocks Youtube channel
 - [WTF Solidity gas optimization techniques, verified with Foundry](https://github.com/WTFAcademy/WTF-gas-optimization)
 - [Web3 Tutorials Overview](https://docs.alchemy.com/docs) - Alchemy, learn How to Build Anything in Web3. Whether you're new to Web3 or an expert Shadowy Super Coder - learn how to get started and level up your development with endless Web3 tutorials and guides.
+- [University alchemy](https://university.alchemy.com/) - Include solidity, javascript
 
 **小工具**
 
