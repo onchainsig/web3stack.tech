@@ -33,6 +33,6 @@
 - [Blockscout](https://docs.blockscout.com/) - Blockchain explorer for inspecting, analyzing, and interacting with EVM chains and rollups.
   - [Blockscout Github](https://github.com/blockscout/blockscout) - Blockchain explorer for Ethereum based network and a tool for inspecting and analyzing EVM based blockchains.
   - [Blockscout Tables Design](https://blockscout.github.io/blockscout-db-schema/index.html)
-- [https://github.com/EthVM/EthVM](Open Source Processing Engine and Block Explorer for Ethereum)
+- [EthVM](https://github.com/EthVM/EthVM) - Open Source Processing Engine and Block Explorer for Ethereum
 
 Final reference is [Explorers](https://juejin.cn/post/6844903859597344781).
