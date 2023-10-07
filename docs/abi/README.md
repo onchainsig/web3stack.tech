@@ -8,7 +8,6 @@
 - 编译生成 abi 文件，得到 Store.abi
 
 ```shell
-cd contracts
 solc --abi Store.sol --overwrite -o .
 ```
 
