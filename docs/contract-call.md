@@ -7,6 +7,7 @@
 3. call
 4. delegatecall
 5. staticcall
+6. callcode
 
 ## 使用合约代码
 
