@@ -38,7 +38,7 @@ When we write a contract, we don't want to write all the code from scratch, so i
 
 ### 链上分析工具
 
-[On-Chain Analysis](on-chain-analysis.md)
+[On-Chain Analysis](docs/onchain-analysis/README.md)
 
 ### Solidity
 
