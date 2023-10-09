@@ -5,6 +5,7 @@
 - [Phalcon](https://phalcon.xyz/)
   - [Phalcon Debug Demo](https://explorer.phalcon.xyz/tx/eth/0xfbf3c5b4c510076960fdff929427ba9cfb31be58557aa98ad1d8e1a14112eb48?line=1&debugLine=1)
 - [Ethtx](https://ethtx.info/)
+  - [ethtx info page](https://ethtx.info/mainnet/0xfbf3c5b4c510076960fdff929427ba9cfb31be58557aa98ad1d8e1a14112eb48/)
 - [Tenderly](https://dashboard.tenderly.co/explorer) - [Tenderly docs](https://docs.tenderly.co/) and [Tenderly Github](https://github.com/tenderly)
   - [Tenderly Debugger](https://dashboard.tenderly.co/tx/mainnet/0xd4fafa1261f6e4f9c8543228a67caf9d02811e4ad3058a2714323964a8db61f6/debugger?trace=0)
 - [Openchain.xyz](https://openchain.xyz/trace) - [Github](https://github.com/openchainxyz/openchain-monorepo) and [abi-guesser](https://github.com/openchainxyz/abi-guesser)
