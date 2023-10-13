@@ -20,7 +20,7 @@
 
 ## 认识 r, s, v
 
-Ethereum 的签名算法使用的是 `secp256k1`, ECDSA 算法的一种，这个和 Bitcoin 是同一种算法，但是不同的是 Ethereum 采用的签名输出格式不太一样，其中 r,s 是签名结果，v 主要用来准确定位公钥的位置
+Ethereum 的生成公私钥的算法使用的是 `secp256k1`, ECDSA 算法的一种，这个和 Bitcoin 是同一种算法，但是不同的是 Ethereum 采用的签名输出格式不太一样，其中 r,s 是签名结果，v 主要用来准确定位公钥的位置
 
 go-ethereum 实现的签名方法如下
 
@@ -29,7 +29,12 @@ signature, _ := crypto.Sign(datahash, privateKey)
 - datahash 是 32 bytes 的数据 hash
 - privateKey 是使用的私钥
 - signature 是签名数据，由 r,s,v 组成：<32bytes R><32bytes S><1byte V>
+
+// 入口
+types.SignTx(NewTransaction(...))
 ```
+
+更加详细的内容可以参考：[签名与校验](https://learnblockchain.cn/books/geth/part3/sign-and-valid.html)
 
 ## solidity
 
