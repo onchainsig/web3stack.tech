@@ -39,3 +39,4 @@ Overview
 ## Application
 
 - [Smart Contract Whitelist](application/whitelist.md)
+- [DID](application/did.md)
