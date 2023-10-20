@@ -7,3 +7,4 @@
 - commonjs - 主要是关于 CommonJS 规范的
 - es - 主要是关于 ES 规范的
 - ts - 主要是 TypeScript 的例子
+- others - 其他的一些例子
