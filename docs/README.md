@@ -2,9 +2,29 @@
 
 Overview
 
+> 智能合约需要一个全新的工程思维，不同于以往项目的开发；因为它犯错的代价是巨大的，并且很难像传统软件那样轻易的打上补丁。
+
+## Contract library & framework
+
+- [OpenZeppelin](https://docs.openzeppelin.com/)
+  - [Cairo contracts](https://github.com/OpenZeppelin/cairo-contracts)
+
+- [thirdweb contracts](https://github.com/thirdweb-dev/contracts)
+  - https://thirdweb.com/explore
+- [以太坊智能合约 —— 最佳安全开发指南](https://github.com/ConsenSys/smart-contract-best-practices/blob/master/README-zh.md)
+- [solmate](https://github.com/transmissions11/solmate) - Modern, opinionated, and gas optimized building blocks for smart contract development.
+- [ERC721A](https://github.com/chiru-labs/ERC721A) - The goal of ERC721A is to provide a fully compliant implementation of IERC721 with significant gas savings for minting multiple NFTs in a single transaction.
+- [Zora v3](https://github.com/ourzora/v3)
+- [Safe](https://docs.safe.global/getting-started/readme) - [safe contracts](https://github.com/safe-global/safe-contracts)
+- 其他知名项目的合约
+  - Compond, Uniswap, Aave, PancakeSwap, Lens ...
+
+
 ## Basic & Infrastructe
 
 - [ethers](ethers.js.md)
+- [wagmi](https://github.com/wagmi-dev/wagmi)
+- [viem](https://viem.sh/) - Build reliable apps & libraries with lightweight, composable, and type-safe modules that interface with Ethereum
 
 ## Solidity & Smart Contract
 

@@ -1,0 +1,21 @@
+{
+  "name": "psm",
+  "version": "1.0.0",
+  "description": "Personal Secert Manager",
+  "type": "module",
+  "main": "index.js",
+  "module": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "node index.js"
+  },
+  "keywords": [
+    "Secert Manager",
+    "SM"
+  ],
+  "author": "shaohan.niu.share@gmail.com",
+  "license": "MIT",
+  "dependencies": {
+    "koa": "^2.14.2"
+  }
+}
