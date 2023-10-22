@@ -1,4 +1,4 @@
-# Node.js
+# JavaScript
 
 无论是 Node.js 还是 Javascript, 抑或是 Typescript, 都是非常类似的，在 Web3 里面，我们可以使用这些语言来做很多事情。
 
