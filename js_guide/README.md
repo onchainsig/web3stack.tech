@@ -7,4 +7,7 @@
 - commonjs - 主要是关于 CommonJS 规范的
 - es - 主要是关于 ES 规范的
 - ts - 主要是 TypeScript 的例子
-- others - 其他的一些例子
+- nodejs - nodejs 的一些例子
+- docs - 存放一些 JS 相关的文章、文档等
+  - [JavaScript and More](docs/README.md)
+
