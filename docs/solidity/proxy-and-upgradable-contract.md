@@ -36,8 +36,25 @@ UUPS 的核心逻辑是把升级函数从代理合约转移到逻辑合约，这
 
 ## 规范和实现
 
+使用代理模式构建一个可升级的合约是行业标准了：代理合约转发调用到实现合约。
+
 - [OpenZeppelin proxy](https://docs.openzeppelin.com/upgrades-plugins/1.x/proxies)
-- 
+- eips
+  - 1167 [Minimal Proxy Contract](https://eips.ethereum.org/EIPS/eip-1167)
+  - 1967 [Proxy Storage Slots](https://eips.ethereum.org/EIPS/eip-1967)
+  - 897 [DelegateProxy](https://eips.ethereum.org/EIPS/eip-897)
+  - 1822 [Universal Upgradeable Proxy Standard (UUPS)](https://eips.ethereum.org/EIPS/eip-1822)
+  - 3561 [Trust Minimized Upgradeability Proxy](https://eips.ethereum.org/EIPS/eip-3561)
+  - 4886 [Proxy Ownership Register](https://eips.ethereum.org/EIPS/eip-4886)
+  - 7511 [Minimal Proxy Contract with PUSH0](https://eips.ethereum.org/EIPS/eip-7511)
+  - 3448 [MetaProxy Standard](https://eips.ethereum.org/EIPS/eip-3448)
+  - 2535 [ Diamonds, Multi-Facet Proxy](https://eips.ethereum.org/EIPS/eip-2535)
+  - 7504 [Dynamic Smart Contracts](https://blog.thirdweb.com/erc-7504-dynamic-smart-contracts/)
+
+
+
+
+
 
 
 
