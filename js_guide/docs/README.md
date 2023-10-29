@@ -191,9 +191,13 @@ y === [4, 5, 6]  // false
 
 ### es module
 
+Reference
+
+- [ES modules: A cartoon deep-dive](https://hacks.mozilla.org/2018/03/es-modules-a-cartoon-deep-dive/)
 
 
-## 学习一下 Typescript
+
+## 学习一下 TypeScript
 
 > TypeScript is **JavaScript with syntax for types.**
 >
@@ -209,6 +213,41 @@ TypeScript 也和 Node.js 建立起了非常紧密的联系，比如
 - [RxJS](https://rxjs.dev/) - widely used library for reactive programming
 - [AdonisJS](https://adonisjs.com/) - A fully featured web framework with Node.js
 - [FoalTs](https://foalts.org/) - The Elegant Nodejs Framework
+
+
+
+类型检查是 TypeScript 的魅力之处，在编写好 TypeScript 代码之后，大致会经过如下阶段：
+
+1. TS 源码被编译为 TypeScript AST
+2. 类型检查器检查 AST
+3. TypeScript AST 被转成 JavaScript 源码
+4. JavaScript 源码编译为 JavaScriot AST
+5. JavaScriot AST 编译成 bytecode
+6. 运行时环境执行 bytecode，从而完成代码所要实现的功能
+
+
+
+类型检查器是非常重要的，所以 TypeScript 有自己的类型系统：
+
+1. 通过显示语句告诉编译器所有值的类型
+2. 自动推导值的类型
+
+TypeScript 支持这两种方式，但是在正常情况下优先使用自动推导，在特殊时候指定值的类型。JavaScript 中的自动类型转换有时候会得到莫名其妙的结果，可能这并不是我们真的想要的；而 TypeScript 不太一样，在无法处理的地方会在编写代码和编译器就报错，如果真的是要这么做也需要明确的表达出意图；进一步减少了编写代码时犯错。
+
+
+
+### 类型
+
+> 一系列值及可以对其执行的操作。
+
+
+
+### Reference
+
+- [深入理解 TypeScript](https://jkchao.github.io/typescript-book-chinese/#why)
+- [TypeScript Docs](https://www.typescriptlang.org/docs/)
+
+
 
 ## 探一探 Node.js, V8 引擎等的核心原理
 
@@ -269,7 +308,11 @@ moreWorkToDo();
 
 我们从 Node.js 的 API 设计可见，它推荐在开发过程中尽量使用非阻塞 API，混用阻塞 API 和非阻塞 API 有时会出现莫名其妙的 Bug。
 
-**异步和 callback**
+##### 非阻塞 IO
+
+相对于阻塞 IO，非阻塞 IO 更加高效。在执行输入输出操作时(比如访问文件，读写网络数据等)，CPU 如果还能做其他事情，这种 IO 操作就属于非阻塞 IO。
+
+##### 异步和 callback
 
 写过前端代码的话，都知道 JS 是运行在浏览器中，JS 在运行过程中是单线程同步运行的，但是在浏览器中仍然需要处理 onClick(), onMouseOver(), onSubmit() 等事件，这些肯定是需要异步通知来触发 JS 代码的执行，这个异步回调的能力恰巧就是浏览器赋予的。
 
@@ -283,7 +326,7 @@ document.getElementById('button').addEventListener('click', () => {
 
 JS 中的函数是一等公民，可以赋值给变量，而且可以作为参数传递给其他函数。
 
-JS 中如何处理 error 呢？在 Node.js 中，是把 error 参数放在回调函数的第一个位置，比如
+JS 中如何处理 error 呢？**在 Node.js 中，是把 error 参数放在回调函数的第一个位置，后面的参数是结果**，比如
 
 ```javascript
 const fs = require('fs');
@@ -294,11 +337,13 @@ fs.readFile('a.json', (err, data) => {
 
 我们可以看到 Node.js 的异步处理需要借助 callback function，因为在 IO 处理完成后需要触发一段 JS 代码，这段代码需要以 callback function 的方式来触发；那如果 callback function 里还是需要异步处理呢？就只能 callback function 里再包含 callback function, 依次类推 ... 这种现象被称为回调地狱，给我们编写 JS 代码带来了非常大的影响，代码可读性差。
 
-**Promise & async/await**
+##### Promise & async/await
 
 针对上面的问题，ES6 和 ES2017 增加了异步的终极解决方案 Promise & async/await .
 
-**process.netxTick()**
+
+
+##### process.netxTick()
 
 ```javascript
 process.nextTick(() => {
