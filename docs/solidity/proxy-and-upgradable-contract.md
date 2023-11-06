@@ -39,6 +39,12 @@ UUPS 的核心逻辑是把升级函数从代理合约转移到逻辑合约，这
 使用代理模式构建一个可升级的合约是行业标准了：代理合约转发调用到实现合约。
 
 - [OpenZeppelin proxy](https://docs.openzeppelin.com/upgrades-plugins/1.x/proxies)
+- [Proxy Patterns](https://blog.openzeppelin.com/proxy-patterns)
+  - A proxy architecture pattern is such that all message calls go through a Proxy contract that will redirect them to the latest deployed contract logic.
+
+- [OpenZeppelin proxy](https://docs.openzeppelin.com/contracts/5.x/api/proxy)
+  - This is a low-level set of contracts implementing different proxy patterns with and without upgradeability
+
 - eips
   - 1167 [Minimal Proxy Contract](https://eips.ethereum.org/EIPS/eip-1167)
   - 1967 [Proxy Storage Slots](https://eips.ethereum.org/EIPS/eip-1967)
@@ -50,7 +56,6 @@ UUPS 的核心逻辑是把升级函数从代理合约转移到逻辑合约，这
   - 3448 [MetaProxy Standard](https://eips.ethereum.org/EIPS/eip-3448)
   - 2535 [ Diamonds, Multi-Facet Proxy](https://eips.ethereum.org/EIPS/eip-2535)
   - 7504 [Dynamic Smart Contracts](https://blog.thirdweb.com/erc-7504-dynamic-smart-contracts/)
-
 
 
 

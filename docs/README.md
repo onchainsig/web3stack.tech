@@ -4,6 +4,14 @@ Overview
 
 > 智能合约需要一个全新的工程思维，不同于以往项目的开发；因为它犯错的代价是巨大的，并且很难像传统软件那样轻易的打上补丁。
 
+
+
+## Common
+
+- Gas limit & Gas used
+  - Sending a native token normally costs `21000` gas
+  - Sending an ERC20 token normally costs `45000` gas
+
 ## Contract library & framework
 
 - [OpenZeppelin](https://docs.openzeppelin.com/)
@@ -38,6 +46,10 @@ Overview
 
 - [abi encode and decode / input data decoding](abi/abi-decode-method-signature.md) - abi 的编码解码以及函数签名
 - [cli: solc, abigen](abi/codegen/README.md) - generate abi, bin, go code ...
+
+### Assembly
+
+- [Inline Assembly](https://docs.soliditylang.org/en/v0.8.21/assembly.html)
 
 ## EVM
 

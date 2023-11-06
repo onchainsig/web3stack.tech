@@ -246,6 +246,7 @@ TypeScript 支持这两种方式，但是在正常情况下优先使用自动推
 
 - [深入理解 TypeScript](https://jkchao.github.io/typescript-book-chinese/#why)
 - [TypeScript Docs](https://www.typescriptlang.org/docs/)
+- [认识 TypeScript](https://fed.taobao.org/blog/taofed/do71ct/head-first-typescript/?spm=taofed.bloginfo.header.12.2aa75ac8TZZwCQ)
 
 
 
@@ -438,8 +439,9 @@ JS 目前是一种编译的方式去执行，V8 会将 JS 代码先进行 JIT �
 
 Reference
 
-1. [[An Introduction to libuv](https://nikhilm.github.io/uvbook/index.html)](https://nikhilm.github.io/uvbook/basics.html)
+1. [An Introduction to libuv](https://nikhilm.github.io/uvbook/basics.html)
 2. https://github.com/danbev/learning-libuv
+3. [Introduction to libuv - The Node.js Event Loop](https://codeahoy.com/learn/libuv/ch1/)
 
 ## 常用类库
 
@@ -479,6 +481,7 @@ Koa 是一个 Web 框架，aims to be a smaller, more expressive, and more robus
 
 - [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS)
 - [MDN Docs](https://developer.mozilla.org/en-US/docs/Learn/JavaScript)
+- [ECMAScript 规范阅读导引](https://fed.taobao.org/blog/taofed/do71ct/mlgtox/)
 
 **Node.js Architecture**
 
