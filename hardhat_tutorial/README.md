@@ -75,3 +75,26 @@ Function: transfer(address,uint256), id: 0xa9059cbb2ab09eb219583f4a59a5d0623ade3
 npx hardhat accounts
 npx hardhat accounts --network goerli
 ```
+
+- approve
+
+```shell
+Hardhat version 2.17.0
+
+Usage: hardhat [GLOBAL OPTIONS] approve --contract <STRING> spender value
+
+OPTIONS:
+
+  --contract    The contract 
+
+POSITIONAL ARGUMENTS:
+
+  spender
+  value  
+
+approve: Approval erc20 tokens
+
+$ npx hardhat approve --contract 0x90Ddc52fE6b98E07C30373C8c61037FBedDabcbB --network goerli 0x9e8ad8877c190ec99CFa11365d947b604c6c4e83 100000
+
+$ npx hardhat approve --contract 0x83411e8CED5C7854f5F26a54D77921971F05d80D --network goerli 0x9e8ad8877c190ec99CFa11365d947b604c6c4e83 1
+```

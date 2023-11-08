@@ -12,3 +12,7 @@ node_modules
 
 dist/
 dist
+
+hardhat_tutorial/cache
+cache/*
+artifacts
