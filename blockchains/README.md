@@ -11,6 +11,10 @@ We can divide chains into two types:
 
 
 
+Chainlist info can see: [chainlist](chainlist.md)
+
+
+
 ## EVM Chains
 
 - Ethereum

@@ -77,6 +77,33 @@ task("approve", "Approval erc20 tokens")
     console.log(tx.hash);
   });
 
+task("approveForAll", "Approval erc721 tokens")
+  .addParam("contract", "The contract")
+  .addPositionalParam("spender")
+  .addPositionalParam("approved")
+  .setAction(async (taskArgs, hre) => {
+    const contractAddress = taskArgs.contract;
+    const spender = taskArgs.spender;
+    const approved = taskArgs.approved.toLowerCase() === "true";
+
+    const signers = await hre.ethers.getSigners();
+    if (signers.length === 0) {
+      console.error("Please config your accounts for network %s", hre.network.name);
+      process.exit(1);
+    }
+
+    const signer = signers[0];
+    // console.log(typeof approved)
+    console.log("%s %s can transfer all tokens from %s on the contract %s", 
+        approved ? "Approve": "Revoke", spender, signer.address, contractAddress);
+
+    const abi = (await hre.ethers.getContractFactory("AngryBirds")).interface;
+    const contract = new hre.ethers.Contract(contractAddress, abi, signer);
+    const tx = await contract.setApprovalForAll(spender, approved);
+    await tx.wait();
+    console.log(tx.hash);
+  });
+
 
 /** @type import('hardhat/config').HardhatUserConfig */
 module.exports = {
