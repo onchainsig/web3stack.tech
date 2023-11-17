@@ -59,4 +59,7 @@ TODO
 ## Reference
 
 - [Permit2](https://github.com/dragonfly-xyz/useful-solidity-patterns/tree/main/patterns/permit2)
+- [Uniswap permit2](https://github.com/Uniswap/permit2) - next generation token approvals mechanism
+- [What is Permit2 - TokenPocket](https://help.tpwallet.io/en/wallet-faq-en/eth-wallet/permit2)
+- [erc20 permit](https://github.com/dragonfly-xyz/useful-solidity-patterns/blob/main/patterns/erc20-permit/README.md)
 

@@ -99,7 +99,7 @@ task("approveForAll", "Approval erc721 tokens")
 
     const abi = (await hre.ethers.getContractFactory("AngryBirds")).interface;
     const contract = new hre.ethers.Contract(contractAddress, abi, signer);
-    const tx = await contract.setApprovalForAll(spender, approved);
+    const tx = await contract.setApprovalForAll(spender, approved)
     await tx.wait();
     console.log(tx.hash);
   });

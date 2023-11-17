@@ -15,3 +15,34 @@
   - Block size: 区块大小是受限制的，每个区块的目标是 1500 万 gas ，当然也会随着网络需求增加或者减少，但是最大不能超过 3000 万 gas；size 的大小是动态变化的，但有上限；容量上，上限是 12M，大部分块是 1 ～2 M
   - 出块时间 [Ethereum Average Block Time Chart](https://etherscan.io/chart/blocktime)
 
+
+
+## Mempool
+
+区块链创建了一个永久交易账本，一旦写入就不可以回滚；所以区块链需要一种机制来推测交易顺序让交易写入到区块当中，mempool 就是这样一种动态存储区域，这使得交易排序、交易费用优先级和一般区块构建成为可能。
+
+被验证合法的交易会发送到 Ethereum 节点的 mempool，每个节点都有自己的 mempool，不同节点之间的 mempool 是通过网络进行同步的，由于网络的可靠性以及及时性，所以节点的 mempool 会有差异；同时，每个节点对于选取哪个交易打包到区块中也有不同的规则，比如最小的 gas price 和 mempool 大小限制等；
+
+理想情况下，交易离开 mempool 的方式是被打包进区块，但是也可以因为加速和取消离开 mempool，还可以因为节点的 mempool 配置被丢弃。
+
+
+
+交易流程中的 mempool 
+
+- First, a user initiates a transaction from a Dapp or Wallet, such as sending funds to another account or contract
+- Then the user signs that transaction with their Wallet
+- The Wallet sends the signed transaction to a node, often called a gateway node, to get onto the Ethereum network (think Infura or Pocket)
+- That node will verify the transaction is valid and add it to its mempool
+- Since the node is connected to a group of peers, it broadcasts the transaction to other nodes.
+- These peer nodes will receive the transaction, validate it, move it into their own mempool, and broadcast to additional peers, essentially replicating the transaction across the network
+- Miners, as a specific kind of node, also receive the transaction from peers, validate it, and attempt to add it to a block
+- Eventually, a successful miner adds a block with the transaction to the chain
+- The new block is broadcast over the network
+- As all nodes receive the new block from their peers, they see the included transaction and remove it from their mempool
+
+
+
+References
+
+1. [What is the Mempool? - Your Intro to In-Flight Transactions](https://www.blocknative.com/blog/mempool-intro)
+

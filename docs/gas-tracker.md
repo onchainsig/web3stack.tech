@@ -44,14 +44,27 @@ base fee 由网络决定而非用户本身，基本逻辑是根据区块的填�
 
 ### Max fee 的计算
 
+Max fee 是用户期望打包交易付出的最大费用。
+
+Max fee = (2 * base fee) + priority fee 
+
+在计算最高费用时将基本费用加倍可确保您的交易在连续六个 100% 完整区块中仍然保持有效状态。
 
 
 
+- 在绝大多数情况下，你支付的每个 gas 单元的 gas fee 是小于 max fee 的
+- 但有时，尤其是在网络非常拥堵的情况下，你支付的 gas fee 是等于 max fee 的
+- 但当你把 max fee 设置的接近 base fee，会导致交易定价过低的风险，从而有可能长时间 pending，或者被 drop
+- 所以在计算 max fee 时最好引入健康的安全系数，及时在发生突发情况时也不至于太过容易导致交易被 drop 或长时间 pending
+
+![image-20231113145452606](/Users/user/workspace/topics/onchainsig/contracts/docs/img/eip-1559-max-fee.png)
 
 
 
 ## Reference
 
+- [Blocknative - EIP1559 fees](https://www.blocknative.com/blog/eip-1559-fees)
+- [The Importance of Gas](https://app.hubspot.com/documents/5118396/view/443710469?accessId=785b1d)
 - [Ethereum Gas Price Tracker](https://www.datawallet.com/ethereum-gas-price)
 - OKLink Gas API
 - Etherscan Gas Tracker
