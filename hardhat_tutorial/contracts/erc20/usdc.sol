@@ -20,7 +20,7 @@ contract USDC is ERC20 {
         super._beforeTokenTransfer(from, to, amount);
     }
 
-    function decimals() public view override returns (uint8) {
+    function decimals() public pure override returns (uint8) {
         return 6;
     }
 
