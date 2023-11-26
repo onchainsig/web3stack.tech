@@ -195,6 +195,32 @@ Reference
 
 - [ES modules: A cartoon deep-dive](https://hacks.mozilla.org/2018/03/es-modules-a-cartoon-deep-dive/)
 
+### Javascript 内置功能
+
+- bind 函数
+
+  - 主要作用：包裹一个函数，让它的 this 指针指向更加明确
+
+  - 例子
+
+    - ```javascript
+      var person = {
+        firstName: "Joo",
+        lastName: "Smith",
+        fullName: function() {
+          return this.firstName + " " + this.lastName;
+        }
+      }
+      
+      const fullName = person.fullName;
+      console.log("Full name: " + fullName());      // Output -> undefined, 因为 this 指向全局空间
+      
+      const boundFullName = fullName.bind(person);
+      console.log("Full name: " + boundFullName()); // Output -> Full name: Joo Smith
+      ```
+
+  - 
+
 
 
 ## 学习一下 TypeScript
@@ -474,6 +500,32 @@ npm install --save-dev cross-env
 > https://koajs.com/
 
 Koa 是一个 Web 框架，aims to be a smaller, more expressive, and more robust foundation for web applications and APIs.
+
+### pm2
+
+
+
+### Node.js 内置功能
+
+#### worker_threads
+
+> node:worker_threads module enables the use of threads that execute JavaScript in parallel. Workers (threads) are useful for performing CPU-intensive JavaScript operations. They do not help much with I/O-intensive work. The Node.js built-in asynchronous I/O operations are more efficient than Workers can be.
+
+总结
+
+1. worker_threads 适合用在 CPU 密集型的工作中，IO 密集型的任务还是要依赖于内置的异步 IO ，才更加高效
+2. worker_threads 可以共享内存，比如可以传递 ArrayBuffer 或者 SharedArrayBuffer 
+3. 子线程和主线程之间可以相互通信，子线程之间也可以
+
+Reference: [node worker_threads](https://nodejs.org/api/worker_threads.html)
+
+#### child_process
+
+
+
+#### cluster
+
+Reference: [cluster, child_process, worker_threads 对比分析](https://www.cnblogs.com/ShuiNian/p/15423317.html)
 
 ## Reference
 

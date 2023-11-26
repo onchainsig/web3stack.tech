@@ -98,3 +98,13 @@ $ npx hardhat approve --contract 0x90Ddc52fE6b98E07C30373C8c61037FBedDabcbB --ne
 
 $ npx hardhat approve --contract 0x83411e8CED5C7854f5F26a54D77921971F05d80D --network goerli 0x9e8ad8877c190ec99CFa11365d947b604c6c4e83 1
 ```
+
+- permit2
+
+```shell
+npx hardhat permit2Approve --network goerli 0x90Ddc52fE6b98E07C30373C8c61037FBedDabcbB 0x5f5aB1692181B2c4dE255B07Be1a4A78Ea95DBD3 3000000 1710576903
+
+npx hardhat permit2Lockdown --network goerli 0x90Ddc52fE6b98E07C30373C8c61037FBedDabcbB 0x5f5aB1692181B2c4dE255B07Be1a4A78Ea95DBD3
+
+npx hardhat permit2Allowance --network goerli 0xC15f02ddbcD8ECe0E6Aee452370b15516D658D0c 0x90Ddc52fE6b98E07C30373C8c61037FBedDabcbB 0x5f5aB1692181B2c4dE255B07Be1a4A78Ea95DBD3
+```
