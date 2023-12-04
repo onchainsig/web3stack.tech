@@ -99,6 +99,8 @@ $ npx hardhat approve --contract 0x90Ddc52fE6b98E07C30373C8c61037FBedDabcbB --ne
 $ npx hardhat approve --contract 0x83411e8CED5C7854f5F26a54D77921971F05d80D --network goerli 0x9e8ad8877c190ec99CFa11365d947b604c6c4e83 1
 ```
 
+npx hardhat approve --contract 0x90Ddc52fE6b98E07C30373C8c61037FBedDabcbB --network goerli 0x9e8ad8877c190ec99CFa11365d947b604c6c4e83 400000
+
 - permit2
 
 ```shell

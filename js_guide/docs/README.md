@@ -32,6 +32,8 @@
 
 
 
+
+
 ## 认识 Javascript & ES6
 
 ### 对 JS 的基本认识
@@ -183,6 +185,45 @@ y === [4, 5, 6]  // false
 
 ### 原型/对象
 
+- this
+
+`this` 不是编写时绑定，而是运行时绑定。它依赖于函数调用的上下文条件。`this` 绑定与函数声明的位置没有任何关系，而与函数被调用的方式紧密相连。
+
+当一个函数被调用时，会建立一个称为执行环境的活动记录。这个记录包含函数是从何处（调用栈 —— call-stack）被调用的，函数是 *如何* 被调用的，被传递了什么参数等信息。这个记录的属性之一，就是在函数执行期间将被使用的 `this` 引用。
+
+`this` 实际上是在函数被调用时建立的一个绑定，它指向 *什么* 是完全由函数被调用的调用点来决定的。
+
+**调用点(Call-site)**
+
+```javascript
+function baz() {
+    // 调用栈是: `baz`
+    // 我们的调用点是 global scope（全局作用域）
+
+    console.log( "baz" );
+    bar(); // <-- `bar` 的调用点
+}
+
+function bar() {
+    // 调用栈是: `baz` -> `bar`
+    // 我们的调用点位于 `baz`
+
+    console.log( "bar" );
+    foo(); // <-- `foo` 的 call-site
+}
+
+function foo() {
+    // 调用栈是: `baz` -> `bar` -> `foo`
+    // 我们的调用点位于 `bar`
+
+    console.log( "foo" );
+}
+
+baz(); // <-- `baz` 的调用点
+```
+
+
+
 
 
 ### 类型/强制转换
@@ -260,11 +301,74 @@ TypeScript 也和 Node.js 建立起了非常紧密的联系，比如
 
 TypeScript 支持这两种方式，但是在正常情况下优先使用自动推导，在特殊时候指定值的类型。JavaScript 中的自动类型转换有时候会得到莫名其妙的结果，可能这并不是我们真的想要的；而 TypeScript 不太一样，在无法处理的地方会在编写代码和编译器就报错，如果真的是要这么做也需要明确的表达出意图；进一步减少了编写代码时犯错。
 
+### 操作符
+
+- !! 作用是将表达式强制转换为布尔类型
+
 
 
 ### 类型
 
 > 一系列值及可以对其执行的操作。
+
+
+
+### 类
+
+
+
+### 内置工具类型
+
+- Awaited<Type> - 主要作用是解码 Promise 里的类型，当然也包括 async/await 函数
+
+```typescript
+type A = Awaited<Promise<string>>      // type A = string
+type B = Awaited<Promise<Promise<number>>>  // type B = number
+```
+
+- Partial<Type> - 主要作用是把 Type 中的所有属性都设置为可选的
+
+```typescript
+interface Todo {
+  title: string;
+  description: string;
+}
+
+function updateTodo(todo: Todo, fieldsUpdate: Partial<Todo>) {
+  return { ...todo, ...fieldsUpdate }
+}
+
+const todo1 = {
+  title: 'Deep-in Typescript',
+  description: 'Typescript is a programming launage.'
+}
+
+const todo2 = updateTodo(todo1, { description: 'new desc' })
+```
+
+- Omit<Type, Keys> - 主要作用是去除掉 type 中 Keys 里有的属性
+
+```typescript
+interface Todo {
+  title: string;
+  description: string;
+  completed: boolean;
+  createdAt: number;
+}
+
+type TodoPreview = Omit<Todo, 'description'> // type TodoPreview = {title: string; completed: boolean; createdAt: number; }
+```
+
+
+
+- Exclude<Type, Union> - 主要作用是从 Type 中排除掉 Union 里的类型
+
+```typescript
+type T0 = Extract<"a" | "b" | "c", "a" | "f">;  // type T0 = "b" | "c"
+type T2 = Exclude<string | number | (() => void), Function>; // type T2 = string | number
+```
+
+
 
 
 
@@ -367,6 +471,8 @@ fs.readFile('a.json', (err, data) => {
 ##### Promise & async/await
 
 针对上面的问题，ES6 和 ES2017 增加了异步的终极解决方案 Promise & async/await .
+
+关于 Promise：[ES6 Promise](https://es6.ruanyifeng.com/#docs/promise)
 
 
 
@@ -534,6 +640,7 @@ Reference: [cluster, child_process, worker_threads 对比分析](https://www.cnb
 - [You Don't Know JS](https://github.com/getify/You-Dont-Know-JS)
 - [MDN Docs](https://developer.mozilla.org/en-US/docs/Learn/JavaScript)
 - [ECMAScript 规范阅读导引](https://fed.taobao.org/blog/taofed/do71ct/mlgtox/)
+- [ES6 入门](https://es6.ruanyifeng.com/)
 
 **Node.js Architecture**
 
