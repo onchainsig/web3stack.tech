@@ -12,7 +12,7 @@ When we write a contract, we don't want to write all the code from scratch, so i
 - [EVM](docs/evm/README.md)
 - [Docs](docs/README.md)
 - Practice
-  - hardhat_tutorial
+  - [web3contract](https://github.com/onchainsig/web3contract) - Chain tools, contract interaction etc.
   - foundry_guide
   - nodejs_guide
 

@@ -1,4 +1,8 @@
-# Smart contract tutorial
+# Smart contract tutorial (Deprecated)
+
+**This project already deprecated, please visit [onchainsig/web3contract](https://github.com/onchainsig/web3contract) instead.**
+
+
 
 This project demonstrates the smart contract developed by Hardhat. 
 
