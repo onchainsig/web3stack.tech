@@ -38,6 +38,8 @@
   - DEX: Uniswap, Sushiswap ...
   - DeFi
   - L2
+- On-chain Analysis
+- Wallet
 - Tools
   - hardhat
   - foundry

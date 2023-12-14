@@ -1,0 +1,23 @@
+## Arbitrum
+
+- Nodes: [RPC endpoints and providers](https://docs.arbitrum.io/node-running/node-providers)
+- Bridge : [Arbitrum Goerli Bridge](https://bridge.arbitrum.io/?l2ChainId=421613)
+  - Ethereum Goerli 网络的以太坊可以通过 Bridge 转移到 Arbitrum Goerli 网络
+  - 到账时间大概 10 分钟
+- Transactions
+  - 0x8348897fc99fa12422298c4287ea15b4a6c0a30570f3e76722e526dcc32768c5 (Ethereum Goerli -> Arbitrum Goerli)
+    - L1 合约地址：0x6BEbC4925716945D46F0Ec336D5C2564F419682C
+  - USDC 测试合约：0x74a87D5632a5781C02C12424d1bA05e08CE52184
+  - 做交易的两个地址：0xC15f02ddbcD8ECe0E6Aee452370b15516D658D0c, 0x9e8ad8877c190ec99CFa11365d947b604c6c4e83
+- [What differences there are between the available Arbitrum chains](https://docs.arbitrum.io/for-devs/concepts/public-chains#what-differences-there-are-between-the-available-arbitrum-chains)
+  - Arbitrum One 和 Arbitrum Nova 是两个平行的链，运行环境和用途目的不太一样，实现的协议有所不同 (Rollup, AnyTrust)
+  - Arbitrum One 更多为普通用户提供可扩展和节约 gas 的兼容 Ethereum 合约的平台
+  - Arbitrum Nova 提供更加高吞吐的交易
+  - Arbitrum Goelri / Sepolia / Stylus 都是 testnet
+- How it works
+  - Bridge 
+    - 将 ERC20 Token 从 Goerli 跨链到 Arbitrum Goerli 后，如果在 Goerli 的合约，但在 Arbitrum Goerli 不存在时，会在 Arbitrum Goerli 网络自动创建合约
+    - 然后将打进来的 Token 
+- SDK
+  - https://www.npmjs.com/package/@arbitrum/sdk
+- https://portal.arbitrum.io/
