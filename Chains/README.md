@@ -28,7 +28,7 @@ Chainlist info can see: [chainlist](chainlist.md)
 
 ## Non EVM Chains
 
-- Bitcoin and its family
+- [Bitcoin](bitcoin/README.md)
 - Solana
 - ...
 

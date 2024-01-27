@@ -1,6 +1,13 @@
 # Bitcoin
 
-比特币的一些基础知识、交易解析等。
+Bitcoin
+
+
+
+WiP
+
+- https://learnmeabitcoin.com/technical/txid
+- https://developer.bitcoin.org/examples/transactions.html
 
 
 
@@ -14,6 +21,20 @@
   - https://blockstream.info/
   - https://btcscan.org/
   - https://mempool.space/zh/
+- 一些快捷查询
+  - https://api.blockcypher.com/v1/btc/main/txs/1e547ce484af5066b8e6939130eeae48842749d5efc83429d285efc7e69f9033?limit=50&includeHex=true  -- 查询交易信息
+  
+- SDK
+  - [bitcoinj](https://bitcoinj.org/)
+  - [bitcoin](https://github.com/bitcoin/bitcoin)
+  - [bitcoinjs-lib](https://github.com/bitcoinjs/bitcoinjs-lib)
+  - [bitcoin in go](https://github.com/btcsuite)
+  - [OKX Javascript SDK](https://www.okx.com/cn/web3/build/docs/build-dapp/private-key-wallet-javascript-sdk)
+  - [OKX Go SDK](https://www.okx.com/cn/web3/build/docs/build-dapp/private-key-wallet-go-sdk)
+  
+- Bitcoin QA
+  - [Bitcoin Reddit](https://www.reddit.com/r/Bitcoin/)
+  
 
 
 
@@ -43,10 +64,19 @@ https://medium.com/@CroutonDigital/crypto-testnet-faucet-list-d5d0bacec341
 - [bitcoin-cli](https://chainquery.com/bitcoin-cli)
 - [bitcoin rpc](https://developer.bitcoin.org/reference/rpc/)
 - [bitaddress](https://www.bitaddress.org/bitaddress.org-v3.3.0-SHA256-dec17c07685e1870960903d8f58090475b25af946fe95a734f88408cef4aa194.html?testnet=true)
+- [Bitcoin bips](https://github.com/bitcoin/bips)
 
 ## Bitcoin Core
 
-比特币的核心原理以及 API
+- [Transaction](transaction.md)
 
+- 转账费用
 
+隔离见证兼容地址（**部分3开头**）比传统地址（**1开头**）**节省 24%** 转账手续费；
+原生隔离见证地址（**bc1开头**）比传统地址（**1开头**）**节省 35%** 转账手续费；
+隔离见证地址（**bc1开头**和**部分3开头**） 比 **多签地址**（**部分3开头**），最多可以节省 70% 转账手续费；
+
+总结：**bc1 开头的原生隔离见证地址，最省转账费用**。
+
+https://bitcoinops.org/en/newsletters/2019/04/16/
 

@@ -42,6 +42,25 @@
 
 
 
+8 Keys to the Mempool
+
+1. Mempool  = Pre-Consensus
+2. There is no single mempool
+3. Each mempool has its own unique set of transactions
+4. Each mempool has it own unique characteristics based on client type, configuration, peers
+5. The mempool is mutable due to Replacement Transactions, including Speed Ups & Cancels
+6. The mempool is an inconsistent "fabric" that grows lumpy during congestion / pressure
+7. Your transaction completes in the mempool for block space
+8. Mempool competition determines gas price and time to confirmation
+
+Mempool 影响每一笔交易，user, trading strategy, wallet, dapp, protocol, L1, L2, bridge, miner, and validator.
+
+![image-20240115191408345](./assets/web3-tx-lifecycle.png)
+
+Ref: https://www.blocknative.com/mempool-masterclass-signup#mempool
+
+
+
 References
 
 1. [What is the Mempool? - Your Intro to In-Flight Transactions](https://www.blocknative.com/blog/mempool-intro)
