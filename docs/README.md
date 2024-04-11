@@ -27,8 +27,9 @@ Overview
 - [Safe](https://docs.safe.global/getting-started/readme) - [safe contracts](https://github.com/safe-global/safe-contracts)
 - 其他知名项目的合约
   - Compond, Uniswap, Aave, PancakeSwap, Lens ...
-- [useful-solidity-patterns](https://github.com/dragonfly-xyz/useful-solidity-patterns#useful-solidity-patterns) - This repo is an ongoing collection of useful, and occasionally clever, solidity/EVM patterns that actually get used in the wild.
+- **[useful-solidity-patterns](https://github.com/dragonfly-xyz/useful-solidity-patterns#useful-solidity-patterns) - This repo is an ongoing collection of useful, and occasionally clever, solidity/EVM patterns that actually get used in the wild.**
 - [web3 链上工具](https://www.oklink.com/cn/tools) - by OKLink
+- [vyper](vyper.md)
 
 
 ## Basic & Infrastructe

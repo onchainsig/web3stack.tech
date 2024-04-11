@@ -74,3 +74,8 @@ https://sui.scallop.io/
 1. connect sui wallet
 2. do task on https://taskon.xyz/campaign/detail/31297
 
+
+
+## Eigenlayer
+
+https://www.eigenlayer.xyz/
