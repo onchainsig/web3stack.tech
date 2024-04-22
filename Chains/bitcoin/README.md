@@ -2,41 +2,41 @@
 
 Bitcoin
 
-
-
 WiP
 
 - https://learnmeabitcoin.com/technical/txid
 - https://developer.bitcoin.org/examples/transactions.html
 
-
-
 ## Tools
 
 - Bitcoin Wallet
+  
   - [Coinomi Wallet](https://www.coinomi.com/en/downloads/) 支持 testnet
+
 - Bitcoin Explorer
+  
   - https://explorer.btc.com/zh-CN
   - https://www.blockchain.com/explorer
   - https://blockstream.info/
   - https://btcscan.org/
   - https://mempool.space/zh/
+
 - 一些快捷查询
-  - https://api.blockcypher.com/v1/btc/main/txs/1e547ce484af5066b8e6939130eeae48842749d5efc83429d285efc7e69f9033?limit=50&includeHex=true  -- 查询交易信息
   
+  - https://api.blockcypher.com/v1/btc/main/txs/1e547ce484af5066b8e6939130eeae48842749d5efc83429d285efc7e69f9033?limit=50&includeHex=true  -- 查询交易信息
+
 - SDK
+  
   - [bitcoinj](https://bitcoinj.org/)
   - [bitcoin](https://github.com/bitcoin/bitcoin)
   - [bitcoinjs-lib](https://github.com/bitcoinjs/bitcoinjs-lib)
   - [bitcoin in go](https://github.com/btcsuite)
   - [OKX Javascript SDK](https://www.okx.com/cn/web3/build/docs/build-dapp/private-key-wallet-javascript-sdk)
   - [OKX Go SDK](https://www.okx.com/cn/web3/build/docs/build-dapp/private-key-wallet-go-sdk)
-  
+
 - Bitcoin QA
-  - [Bitcoin Reddit](https://www.reddit.com/r/Bitcoin/)
   
-
-
+  - [Bitcoin Reddit](https://www.reddit.com/r/Bitcoin/)
 
 ## Bitcoin Guide
 
@@ -57,7 +57,7 @@ https://medium.com/@CroutonDigital/crypto-testnet-faucet-list-d5d0bacec341
 **explorer**
 
 1. https://live.blockcypher.com/btc-testnet/
-1. https://blockstream.info/testnet/
+2. https://blockstream.info/testnet/
 
 ## Resources
 
@@ -79,4 +79,3 @@ https://medium.com/@CroutonDigital/crypto-testnet-faucet-list-d5d0bacec341
 总结：**bc1 开头的原生隔离见证地址，最省转账费用**。
 
 https://bitcoinops.org/en/newsletters/2019/04/16/
-

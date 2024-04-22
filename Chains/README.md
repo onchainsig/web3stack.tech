@@ -2,18 +2,12 @@
 
 > Blockchain exists as infrastructure, and it is essential to understand the underlying infrastructure in depth when building upper layer applications.
 
-
-
 We can divide chains into two types:
 
 1. EVM Chains
 2. Non-EVM Chains
 
-
-
 Chainlist info can see: [chainlist](chainlist.md)
-
-
 
 ## EVM Chains
 
@@ -31,6 +25,3 @@ Chainlist info can see: [chainlist](chainlist.md)
 - [Bitcoin](bitcoin/README.md)
 - Solana
 - ...
-
-
-
