@@ -22,7 +22,7 @@ Furthermore, **lamports** is the smallest unit in the Solana network, 1 **SOL** 
 
 | Official Site              | [https://solana.com/](https://solana.com/zh)                                                                                                                                                                                                                                                                                                                                                                                                                |
 |:-------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| White Paper                | https://solana.com/solana-whitepaper.pdf                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| White Paper                | 如果想对 Solana 的设计初衷、共识机制等有所了解，先看白皮书<br/> https://solana.com/solana-whitepaper.pdf                                                                                                                                                                                                                                                                                                                                                                             |
 | Consensus                  | DPoS & PoH                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 | Features                   | High Performance                                                                                                                                                                                                                                                                                                                                                                                                                                            |
 | Block Time                 | 400 ms                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
@@ -139,7 +139,7 @@ $ solana transfer ...
   
   - [Solana Fundamentals Reference Guide](https://www.quicknode.com/guides/solana-development/getting-started/solana-fundamentals-reference-guide) - QuickNode 上关于 Solana 的一些开发教程
 
-看完上面的一些资料，应该有很多疑问，接下来深入分析 Solana 里的一些核心的知识，方便我们在开发基于 Solana 的 Wallet。
+看完上面的一些资料，应该有很多疑问，接下来深入分析 Solana 里的一些核心的知识，方便我们开发基于 Solana 的 Wallet。
 
 ### Keypair
 
@@ -173,7 +173,7 @@ if len(PK) != ed25519.PrivateKeySize {
 }
 
 // ed25519 的 公钥和私钥
-priKey := ed25519.PrivateKey(key)
+priKey := ed25519.PrivateKey(PK)
 pubKey := priKey.Public().(ed25519.PublicKey)
 
 address := base58.Encode(pubKey)
@@ -190,7 +190,7 @@ Solana 中的 Account 不仅仅存储普通地址(指那些由 ed25519 算法生
 
 <img title="" src="../../assets/2024-04-17-14-07-46-image.png" alt="" width="444" data-align="center">
 
-[Accounts | Solana Cookbook](https://solanacookbook.com/core-concepts/accounts.html) 是 Solana 中介绍的 Account Model。
+上图是 [Accounts | Solana Cookbook](https://solanacookbook.com/core-concepts/accounts.html) 是 Solana 中介绍的 Account Model。
 
 **存在三种类型的账户**
 
@@ -213,19 +213,23 @@ Solana 中的 Account 不仅仅存储普通地址(指那些由 ed25519 算法生
 **每个账户都包含如下字段**
 
 - lamports - 当前账户的 sol 余额
+
 - owner - 当前账户归属的程序账户
+  
   - This field stores the address of an on-chain program and represents *which* on-chain program is allowed to *write* to the account’s data and subtract from its lamport balance. (该字段存储链上程序的地址，表示允许哪个链上程序写入账户数据并从其 lamports 余额中减去)
   - 通俗点说就是只有 owner 才可以减掉该账户的 lamports 余额，或者修改 data 数据；其他任何程序都可以增加一个账户的 lamports
+
 - executable - 当前账户是否是可执行的，只有程序账户才是 true，数据账户是 false
+
 - data - 当前账户存储的原始数据，对于数据账户存储的是数据状态，而对于程序账户存储的是 executable code 或者一个指向存储了 executable code 的账户代理地址
+
 - rent_epoch - 这个字段存储的是当前账户在那个 epoch 会欠租金，意味着在那个 epoch 账户会被释放，数据会被 remove
+  
   - 在账户上存储数据是需要花费 SOL 的，所谓的租金；但是可以通过保持账户的最小余额相当于 2 年租金，账户可以免租金
   
   - If the account does not have enough to pay rent, the account will be deallocated and the data removed.
   
   - 关于 rent [What is rent? | Solana](https://solana.com/docs/core/rent)
-
-
 
 <img title="" src="../../assets/2024-04-19-21-10-28-image.png" alt="" width="1048" data-align="center">
 
@@ -251,7 +255,7 @@ curl https://api.devnet.solana.com -X POST -H "Content-Type: application/json" -
 
 **System program**
 
-这是 Solana 的 Native Program, 也就是说是内置在 Solana 节点实例中的专门处理创建账户和转移 lamports 的程序(智能合约)，既然是内置的，它的 programId 就应该是固定的，可以看 [solana/sdk/program/src/system_program.rs at v1.18.9 · solana-labs/solana · GitHub](https://github.com/solana-labs/solana/blob/v1.18.9/sdk/program/src/system_program.rs), 此外 System Program 支持的 instructions 在这里 [solana/sdk/program/src/system_instruction.rs at v1.18.9 · solana-labs/solana · GitHub](https://github.com/solana-labs/solana/blob/v1.18.9/sdk/program/src/system_instruction.rs) 也可以看到。
+这是 Solana 的 Native Program, 是内置在 Solana 节点实例中的专门处理创建账户和转移 lamports 的程序(智能合约)，既然是内置的，它的 programId 就应该是固定的，可以看 [solana/sdk/program/src/system_program.rs at v1.18.9 · solana-labs/solana · GitHub](https://github.com/solana-labs/solana/blob/v1.18.9/sdk/program/src/system_program.rs), 此外 System Program 支持的 instructions 在这里 [solana/sdk/program/src/system_instruction.rs at v1.18.9 · solana-labs/solana · GitHub](https://github.com/solana-labs/solana/blob/v1.18.9/sdk/program/src/system_instruction.rs) 也可以看到。
 
 其他类型的内置 Program
 
@@ -279,8 +283,6 @@ curl http://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/js
 # c29sYW5hX3N5c3RlbV9wcm9ncmFt -> solana_system_program
 ```
 
-
-
 **总结一些规则**
 
 1. 只有数据账户的 owner 可以修改自己的数据和 lamports
@@ -288,8 +290,6 @@ curl http://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/js
 3. 为了确保一个合约不能修改其他合约的账户数据，每个账户都被指定一个 owner，这个 owner 执行特定的程序，这样当程序账户在执行时就可以来确定它是否可以修改指定数据账户的数据部分和 lamports；
 4. 由于可执行的程序账户是不可修改的，所以他们的数据状态需要存储在一些独特的可修改的数据账户中; Developers can create new accounts with an assigned owner equal to the address of their executable account to store data，意思就是开发 Program 的人员可以通过创建新的账户来存储 program 运行时需要用到的数据，这些账户的 owner 指向这个程序的 programId 即可，这样 program 就可以操作这些数据账户
 5. 每个账户都有一个指定的 owner，由于账户可以被创建并接收 sol，所以账户必须在创建时指定一个默认的 owner；在 Solana 中有个一称作 System Program 的默认 owner，它主要作用就是创建账户和转移 lamports
-
-
 
 #### Reference
 
@@ -309,8 +309,6 @@ curl http://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/js
   
   - [Developing on-chain programs | Solana](https://solana.com/docs/programs)
 
-
-
 ### Transactions
 
 在 Solana 区块链上，transaction 是最小的执行单元，program 的执行开始于提交到 Solana Cluster 的交易；每个交易由若干个 instructions 构成，这些 instructions 按序自动的被执行，如果某个 instruction 执行失败，整个交易都会失败。
@@ -329,9 +327,9 @@ curl http://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/js
 
 - 阶段 2，client 根据 program 的 instruction 规则构建一个交易，签名后发送给 Solana 区块链节点；然后 Solana Runtime 会根据内置的规则加载对应的可执行程序去执行指令，程序执行的过程中会修改相关的 Account lamports or data.
 
+**Transaction 的结构**
 
-
-Transaction 的组成
+<img title="" src="../../assets/2024-04-22-12-36-22-image.png" alt="" data-align="center">
 
 - Signatures
   
@@ -451,7 +449,6 @@ tx, err := types.NewTransaction(types.NewTransactionParam{
 简单分析: 从 [solana/sdk/program/src/system_instruction.rs at v1.18.9 · solana-labs/solana · GitHub](https://github.com/solana-labs/solana/blob/v1.18.9/sdk/program/src/system_instruction.rs#L700) 看一下 system program 中的 transfer instruction 实现
 
 ```rust
-
 /// entrypoint!(process_instruction);
 ///
 /// fn process_instruction(
@@ -475,8 +472,6 @@ pub enum SystemInstruction {
 
 instruction 三要素：programId -> 11111111111111111111111111111111, accounts -> [From (Signer), To], instruction data -> instruction type & lamports；所以重点是 instruction type 和 lamports 的序列化，如何让 Solana runtime 也能正确反序列化，可以看这里 [solana_program - Rust](https://docs.rs/solana-program/latest/solana_program/#serialization)，得知 System Program 使用的是 [bincode](https://github.com/bincode-org/bincode/blob/trunk/docs/spec.md) 的方式作为编解码的方式，这在它的源代码里也能得到证实。
 
-
-
 几个注意点
 
 - 如果 target address 是一个全新的账户，转账的最低金额需要从 `getMinimumBalanceForRentExemption` RPC method 中获取，太小的金额会执行失败，insufficient funds 之类的错误；原因是每个账户都需要支付 rent，如果需要免租，需要至少 890880 lamports
@@ -485,17 +480,115 @@ instruction 三要素：programId -> 11111111111111111111111111111111, accounts 
 
 - 如果 target address 是一个已经存在的账户，转账金额没有限制
 
-
-
 #### Reference
 
 - [Transactions | Solana Cookbook](https://solanacookbook.com/core-concepts/transactions.html)
 
 - [Transactions | Solana](https://solana.com/docs/core/transactions) - 这里介绍了 Transaction 的基本组成，以及对 Transaction 每个部分的剖析
 
+- [Versioned Transactions | Solana Cookbook](https://solanacookbook.com/guides/versioned-transactions.html) - Transaction 内部结构
+
 ### Program
 
+前面也多多少少提到了 Program，概括一下：Program 是 Solana 网络上的智能合约，可以让用户实现自定义的业务逻辑；Program 分为两类，一类是 Native Program，是 Solana 内置在节点中的一些具备基础能力的程序，比如 Vote，创建账户，SOL 转账等；一类是 On-chain Program，是由用户编写，用来实现特定目的，比如 Solana Program Library 里的 Token Program，是用来实现同质化代币和非同质化代币的程序，由 solana labs 开发并部署。
 
+**几个要点**
+
+- Program 是特殊的账号，被标记为 executable
+
+- Program 可以拥有其他账户
+
+- Program 可以修改它拥有的账户的 data 和 lamports
+
+- 任何的 Program 都可以读取其他账户，并且也可以向其他账户转账
+
+- Program 是无状态的，它的 data 字段存储的是被 BPF 编译后的可执行代码
+  
+  - 状态数据存储在其他的 Account 中，这些 Account 和这个 Program 存在一定的关系
+  
+  - 比如要存储 Program 的一个全局状态，我们可以结合 programId 和一个特殊字符串，编码后使用 sha256 hash 得到一个地址，用来存放这个全局数据
+
+- On-chain Program 的 owner 是 [BPF Loader](https://docs.solanalabs.com/runtime/programs#bpf-loader)，并且被 Solana Runtime 执行
+  
+  - BPF Loader Prgram ID: `BPFLoaderUpgradeab1e11111111111111111111111`
+
+- Program 可以更新它自己的 owner
+
+- [SPL](https://spl.solana.com/) 是 Solana labs 开发的一些 on-chain program 的集合，比如 Token Program，Token Swap Program 等
+
+- Program 可以处理来自用户的 instructions，也可以处理来自其他 program 的
+
+- 每个 Program 都有一个唯一的入口点 (entrypoint)，这里是处理指令的入口，参数像这样
+  
+  - program_id: pubkey
+  
+  - accounts: array
+  
+  - instruction_data: byte array
+
+<img src="../../assets/2024-04-22-13-54-45-image.png" title="" alt="" data-align="center">
+
+**关于 PDA (Program Derived Address)**
+
+我们已经知道 Program 是无状态的，但现实世界是有状态的、复杂的，PDA 就可以解决状态存储的问题。
+
+- PDA 是一个类似 public key 的 32 bytes 字符串，但是不存在一个 private key 和它对应，也就是 PDA 并不在 ed25519 curve 上
+
+- PDA 是确定性的，可以使用 programId 和 seeds 确定性的生成出来，所以我们可以在任何地方推导 PDA
+
+- Program 可以为 PDA 签名来操作 PDA 里边的数据，而且 PDA 只能由衍生它的 Program 进行签名
+
+PDA 是开发 Program 基本的构建块，并且由 Program 来保证属于当前 Program 的 PDA 不会被外部的 Program 直接更改状态。
+
+```go
+// 我们可以使用 FindProgramAddress 来推导 PDA
+func FindProgramAddress(seed [][]byte, programID PublicKey) (PublicKey, uint8, error) {
+    var pubKey PublicKey
+    var err error
+    // 定义最大迭代次数 255，如果迭代超过 255 还没有找到 PDA，就返回 error，因为要保证 PDA 不在 curve 之上
+    var nonce uint8 = 0xff
+    for nonce != 0x0 {
+        // 创建 PDA
+        pubKey, err = CreateProgramAddress(append(seed, []byte{byte(nonce)}), programID)
+        if err == nil {
+            return pubKey, nonce, nil
+        }
+        nonce--
+    }
+    return PublicKey{}, nonce, errors.New("unable to find a viable program address")
+}
+
+// seeds 列表 + programId 生成 PDA
+func CreateProgramAddress(seeds [][]byte, programId PublicKey) (PublicKey, error) {
+    if len(seeds) > MaxSeed {
+        return PublicKey{}, errors.New("length of the seed is too long for address generation")
+    }
+
+    // 拼接字节序列
+    // - seeds 拼接在一起
+    // - 接着是 programId 的字节序列
+    // - 最后是字符串 ProgramDerivedAddress 的字节序列
+    buf := []byte{}
+    for _, seed := range seeds {
+        if len(seed) > MaxSeedLength {
+            return PublicKey{}, errors.New("length of the seed is too long for address generation")
+        }
+        buf = append(buf, seed...)
+    }
+    buf = append(buf, programId[:]...)
+    buf = append(buf, []byte("ProgramDerivedAddress")...)
+
+    // 对最终的字节序列做 sha256 hash
+    h := sha256.Sum256(buf)
+
+    pubkey := PublicKeyFromBytes(h[:])
+    // 确保生成的 PDA 地址不在 ed25519 曲线上，因为在曲线上的公钥会存在一把私钥，具备安全隐患
+    if IsOnCurve(pubkey) {
+        return PublicKey{}, errors.New("invalid seeds, address must fall off the curve")
+    }
+    return pubkey, nil
+}
+```
 
 #### SPL Token
 
@@ -503,24 +596,190 @@ instruction 三要素：programId -> 11111111111111111111111111111111, accounts 
 
 首先，SPL Token 类似于 Ethereum 里的 ERC20 Token 和 ERC721 Token，它是 Solana 区块链中特有的概念，SPL Token 是一个由 Solana Labs 开发的 On-Chain Program (Smart Contract)，并且由 Solana Labs 部署在区块链上供其他人使用，也可以说 SPL Token 就是 Solana 的 Token 标准。
 
+SPL Token Program - [solana-program-library/token/program/src at master · solana-labs/solana-program-library · GitHub](https://github.com/solana-labs/solana-program-library/tree/master/token/program/src)
 
+```rust
+// 注册 process_instruction，绑定到 entrypoint
+solana_program::entrypoint!(process_instruction);
+
+// SPL token program entrypoint
+fn process_instruction(
+    program_id: &Pubkey,            // program id
+    accounts: &[AccountInfo],       // 用到的 accounts，这是个数组，顺序比较重要，要看 instruction 的定义
+    instruction_data: &[u8],        // instruction 用到的 data，跟指令本身有关
+) -> ProgramResult {
+    if let Err(error) = Processor::process(program_id, accounts, instruction_data) {
+        // catch the error so we can print it
+        error.print::<TokenError>();
+        return Err(error);
+    }
+    Ok(())
+}
+
+// https://github.com/solana-labs/solana-program-library/blob/master/token/program/src/processor.rs#L847
+// 这里把 instruction type 和处理函数进行绑定
+pub fn process(program_id: &Pubkey, accounts: &[AccountInfo], input: &[u8]) -> ProgramResult {
+    // 从 instruction data 中取出 instruction 和参数
+    //  - instruction type 一般是第一个字节，使用 compact-u16 编码的
+    //  - 参数是后面的字节，需要特定方式解码
+    let instruction = TokenInstruction::unpack(input)?;
+    match instruction {
+        ...
+        // 处理 transfer 指令
+        TokenInstruction::Transfer { amount } => {
+            msg!("Instruction: Transfer");
+            Self::process_transfer(program_id, accounts, amount, None)
+        }
+        ...
+    }
+}
+
+/// Processes a [Transfer](enum.TokenInstruction.html) instruction.
+pub fn process_transfer(
+    program_id: &Pubkey,
+    accounts: &[AccountInfo],
+    amount: u64,
+    expected_decimals: Option<u8>,
+) -> ProgramResult {
+    let account_info_iter = &mut accounts.iter();
+    ...
+    // 处理逻辑
+}
+
+
+// https://github.com/solana-labs/solana-program-library/blob/master/token/program/src/instruction.rs#L25C1-L25C32
+// Token 指令定义
+pub enum TokenInstruction<'a> {
+    ...
+    /// Transfers tokens from one account to another either directly or via a
+    /// delegate.  If this account is associated with the native mint then equal
+    /// amounts of SOL and Tokens will be transferred to the destination
+    /// account.
+    ///
+    /// Accounts expected by this instruction:
+    ///
+    ///   * Single owner/delegate
+    ///   0. `[writable]` The source account.
+    ///   1. `[writable]` The destination account.
+    ///   2. `[signer]` The source account's owner/delegate.
+    ///
+    ///   * Multisignature owner/delegate
+    ///   0. `[writable]` The source account.
+    ///   1. `[writable]` The destination account.
+    ///   2. `[]` The source account's multisignature owner/delegate.
+    ///   3. ..3+M `[signer]` M signer accounts.
+    Transfer {
+        /// The amount of tokens to transfer.
+        amount: u64,
+    },
+    ...
+}
+```
+
+SPL Token 使用的模式是一次部署多个账户使用，Token Program 所做的事情比较固定，并且 program 本身是无状态的，所有人共用一份代码更加节省资源和达成共识。
 
 **几个概念**
 
 - SPL Token - 代表了 Solana 网络上的非原生代币，包括同质化和非同质化
 - Token Program - 包含了创建以及和 SPL Token 交互的一组指令，链上的 programId 是 `TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA`
-- Token Mint - 持有特定 Token 数据但不持有代币的账户，这是一个数据账户
+- Token Mint - 持有特定 Token 数据但不持有代币的账户，这是一个数据账户，这个地址会作为被创建 token 的地址
 - Token Account - 持有特定 Token Mint 的账户，在创建 Token Account 的时候需要 SOL 来支付租金，但是当账户注销关闭后，租金会退还；但 Token Mint 目前无法注销
 
-token program 是 SPL 提供的众多程序之一，包含了创建和与 SPL-token 交互的指令，这些代表 Solana 网络上的所有非原生代币
+在 Solana 上发行一个类似于 ERC20 Token 是相对容易一些，不需要额外写 Program，Solana Labs 已经为我们提供了一份 SPL Token Program，并且也部署到了链上，我们只需要引用 Token Program ID (**TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA**)，但是我们需要遵循发行 Token 的几个步骤，一步步来，基本流程如下
 
-1. Create token: `spl-token create-token` , 得到 token identifier，也叫 Mint 地址，用作某个代币的合约地址；所以，在 Solana 上 token program 只有一份，是由 Solana Labs 部署在 Solana 区块链上的
+<img src="../../assets/2024-04-23-06-42-14-image.png" title="" alt="" data-align="center">
 
-mint address 的 owner 是 Token Program (**TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA**)
+##### Token Mint
 
-SPL-Token 转移需要发送方和接收方都拥有要转移的代币铸造厂的 Token 账户；代币从发送方的 Token 账户转移到接收方的 Token 账户；当获取接收方的关联Token账户以确保其在转移前存在时，您可以使用`getOrCreateAssociatedTokenAccount`。只需记住，如果账户尚不存在，则此函数将创建它，交易付款人将扣除所需的账户创建的lamports。
+我们需要先创建一个 Token Mint 账户，被看作是 token identifier，也叫 Mint 地址，用作某个代币的合约地址；mint address 的 owner 是 Token Program (**TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA**)，这样我们就可以基于 Token Program 去创建很多个 Tokens，就像下面这样
 
-2. Token 账户
+<img src="../../assets/2024-04-23-06-50-26-image.png" title="" alt="" data-align="center">
+
+```rust
+pub enum TokenInstruction<'a> {
+    /// Initializes a new mint and optionally deposits all the newly minted
+    /// tokens in an account.
+    ///
+    /// The `InitializeMint` instruction requires no signers and MUST be
+    /// included within the same Transaction as the system program's
+    /// `CreateAccount` instruction that creates the account being initialized.
+    /// Otherwise another party can acquire ownership of the uninitialized
+    /// account.
+    ///
+    /// Accounts expected by this instruction:
+    ///
+    ///   0. `[writable]` The mint to initialize.
+    ///   1. `[]` Rent sysvar
+    InitializeMint {
+        /// Number of base 10 digits to the right of the decimal place.
+        decimals: u8,
+        /// The authority/multisignature to mint tokens.
+        mint_authority: Pubkey,
+        /// The freeze authority/multisignature of the mint.
+        freeze_authority: COption<Pubkey>,
+    },
+    ...
+}
+```
+
+从 Token Instruction 可以看出，我们需要指定 mint 的地址，decimals，mint_authority, freeze_authority
+
+```go
+tx, err := types.NewTransaction(types.NewTransactionParam{
+    Message: types.NewMessage(types.NewMessageParam{
+		FeePayer:        feePayer.PublicKey,
+		RecentBlockhash: recentBlockHashResp.Blockhash,
+
+        // 创建账户和初始化 mint 两个指令要放在同一个 transaction 中，这样更加安全
+		Instructions: []types.Instruction{    
+			// 创建 Mint 账户，New 字段指向新的 Mint 地址
+            system.CreateAccount(system.CreateAccountParam{
+				From:     feePayer.PublicKey,     // 支付 transaction fee 和 rent fee 的账户
+				New:      mint.PublicKey,         // 新创建的 Mint 账户地址
+				Owner:    common.TokenProgramID,  // 可以看到是指向 token program id
+				Lamports: rentExemptionBalance,   // 新创建的 mint 账户免租的最小金额，从 rpc method 获取
+				Space:    token.MintAccountSize,  // Mint 账户占用的空间大小，这个大小是固定的 82 bytes
+			}),
+            // 初始化上面创建的 mint 账户，理论上只能被初始化一次
+			token.InitializeMint(token.InitializeMintParam{
+				Decimals:   8,                    // 新发的 token 的 decimals，也就是最小单位       
+				Mint:       mint.PublicKey,       // Mint 账户
+				MintAuth:   alice.PublicKey,      // 哪个账户地址有权限铸造新的 token
+				FreezeAuth: nil,                  // 哪个账户地址有权限冻结这个 token，可以不指定
+			}),
+		},
+	}),
+	Signers: []types.Account{feePayer, mint},
+})
+```
+
+- Check Token Mint Account
+
+在创建并初始化 Token Mint 后，可以通过 rpc 来查询结果以验证正确性，这个比较简单，就是调用 getAccountInfo 方法
+
+```shell
+curl http://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
+  {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "getAccountInfo",
+    "params": [
+      "EPjFWdd5AufqSSqeM2qN1xzybapC8G4wEGGkZwyTDt1v",
+      {
+        "encoding": "jsonParsed"
+      }
+    ]
+  }
+'
+# Response
+{"jsonrpc":"2.0","result":{"context":{"apiVersion":"1.17.28","slot":261686915},"value":{"data":{"parsed":{"info":{"decimals":6,"freezeAuthority":"3sNBr7kMccME5D55xNgsmYpZnzPgP2g12CixAajXypn6","isInitialized":true,"mintAuthority":"2wmVCSfPxGPjrnMMn7rchp4uaeoTqN39mXFC2zhPdri9","supply":"2813057885819043"},"type":"mint"},"program":"spl-token","space":82},"executable":false,"lamports":251587661628,"owner":"TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA","rentEpoch":18446744073709551615,"space":82}},"id":1}
+```
+
+##### Token Account
+
+SPL-Token 转移需要发送方和接收方都拥有要转移的代币铸造厂的 Token 账户；代币从发送方的 Token 账户转移到接收方的 Token 账户；当获取接收方的关联Token 账户以确保其在转移前存在时，您可以使用`getOrCreateAssociatedTokenAccount`。只需记住，如果账户尚不存在，则此函数将创建它，交易付款人将扣除所需的账户创建的 lamports。
+
+
 
 Token Mint 账户创建完成后，需要创建一个 Token 账户来持有新发行的代币
 
@@ -528,9 +787,9 @@ PDA
 
 PDAs 是结合程序地址和开发者选择的一些种子，以创建存储单个数据片段的地址。由于 PDAs 是位于 Ed25519 椭圆曲线之外的地址，因此 PDAs 没有私钥。相反，PDAs 可以通过用于创建它们的程序地址进行签名。
 
-#### 关于 Associated Token Account Program ([ATA](https://spl.solana.com/associated-token-account))
+**关于 Associated Token Account Program**
 
-ATA 是一种将钱包地址映射到关联的某个 token 账户的机制，主要作用简化了 Token Account 的维护。
+[ATA](https://spl.solana.com/associated-token-account) 是一种将钱包地址映射到关联的某个 token 账户的机制，主要作用简化了 Token Account 的维护。
 
 从理论上来讲，一个用户针对某个 `token mint` 可以拥有任意多个 token accounts，这就引入了一个非常麻烦的事情，在发送 token 时我们很难知道其他人的 token account 是什么，从而为 token 管理引入了很多麻烦；ATA 引入了一种确定性的推导 token account 的机制，只需要使用用户的 System 账户地址和 token mint 地址结合在一起，确定性的创建一个 token account 出来，我们叫这类账户为关联 token 账户
 
@@ -542,6 +801,8 @@ ATA 的生成方式
 var TokenProgramID = PublicKeyFromString("TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA")
 var SPLAssociatedTokenAccountProgramID = PublicKeyFromString("ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL")
 
+// walletAddress - 用户的钱包地址，有公私钥的地址
+// tokenMintAddress - 具体某个 token 的地址
 func FindAssociatedTokenAddress(walletAddress, tokenMintAddress PublicKey) (PublicKey, uint8, error) {
     seeds := [][]byte{}
     seeds = append(seeds, walletAddress.Bytes())
@@ -602,7 +863,25 @@ pub enum AssociatedTokenAccountInstruction {
 }
 ```
 
+##### Mint To
 
+-
+
+##### Check Balance
+
+-
+
+##### Token Transfer
+
+-
+
+#### Reference
+
+- [Programs | Solana Cookbook](https://solanacookbook.com/core-concepts/programs.html)
+
+- [Program Derived Addresses (PDAs) | Solana Cookbook](https://solanacookbook.com/core-concepts/pdas.html) 
+
+- [Developing on-chain programs | Solana](https://solana.com/docs/programs)
 
 ## Solana JSON RPC
 
@@ -636,8 +915,6 @@ RpcResponse 结构分为两部分：context 和 value
 [Add Solana to Your Exchange | Solana](https://solana.com/docs/more/exchange#listening-for-deposits) - This guide describes how to add Solana's native token SOL to your cryptocurrency exchange.
 
 这篇文章很有用，建议仔细读。
-
-
 
 ## SDK
 
