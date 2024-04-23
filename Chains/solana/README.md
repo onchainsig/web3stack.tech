@@ -139,6 +139,12 @@ $ solana transfer ...
   
   - [Solana Fundamentals Reference Guide](https://www.quicknode.com/guides/solana-development/getting-started/solana-fundamentals-reference-guide) - QuickNode 上关于 Solana 的一些开发教程
 
+- 进阶资料
+  
+  - [SolDev - Solana Development Course](https://www.soldev.app/course)
+  
+  - [solana-course/README.md at main · Unboxed-Software/solana-course · GitHub](https://github.com/Unboxed-Software/solana-course/blob/main/README.md)
+
 看完上面的一些资料，应该有很多疑问，接下来深入分析 Solana 里的一些核心的知识，方便我们开发基于 Solana 的 Wallet。
 
 ### Keypair
@@ -383,7 +389,7 @@ instruction data 序列化的通用做法是使用一个数字放在最前边，
 
 #### Deep into transaction
 
-Solana 的 transaction 有两类：Legacy transaction 和 Versioned transaction。
+Solana 的 transaction 有两类：Legacy transaction 和 [Versioned transaction](https://www.soldev.app/course/versioned-transaction)。
 
 - Legacy transaction 的缺陷是，由于每个交易的最大字节数是 1232 bytes，会导致地址一个原子交易中能包含的最大地址数是 35 个，从这个来看，对交易指令的大小以及涉及到的地址数是有限制的
 
@@ -413,6 +419,7 @@ type Transaction struct {
 
 用来解决 RecentBlockHash 很快过期的问题，一般 150 个 block 以内，大概是 1m20s 以内
 
+- [Sending Offline Transactions - Durable Nonce | Solana Cookbook](https://solanacookbook.com/references/offline-transactions.html#durable-nonce)
 - [Durable Nonce | Solana Development With Go](https://blocto.github.io/solana-go-sdk/advanced/durable-nonce/) 
 
 #### Transfer SOL
@@ -487,6 +494,8 @@ instruction 三要素：programId -> 11111111111111111111111111111111, accounts 
 - [Transactions | Solana](https://solana.com/docs/core/transactions) - 这里介绍了 Transaction 的基本组成，以及对 Transaction 每个部分的剖析
 
 - [Versioned Transactions | Solana Cookbook](https://solanacookbook.com/guides/versioned-transactions.html) - Transaction 内部结构
+
+- [Solana Transactions in Depth](https://medium.com/@asmiller1989/solana-transactions-in-depth-1f7f7fe06ac2)
 
 ### Program
 
@@ -591,6 +600,8 @@ func CreateProgramAddress(seeds [][]byte, programId PublicKey) (PublicKey, error
     return pubkey, nil
 }
 ```
+
+[Program Derived Addresses (PDAs) | Solana Cookbook](https://solanacookbook.com/core-concepts/pdas.html#facts) 
 
 #### SPL Token
 
@@ -1082,7 +1093,13 @@ More things todo:
 
 - [Solana programs Part 3: understanding Metaplex Token Metadata | Sec3 Blog](https://www.sec3.dev/blog/solana-programs-part-3)
 
+- [Interacting with Tokens | Solana Cookbook](https://solanacookbook.com/references/token.html#what-do-i-need-to-get-started-with-spl-tokens)
+
+- [Token Metadata - Overview](https://developers.metaplex.com/token-metadata)
+
 ## Solana JSON RPC
+
+> [Solana RPC HTTP Methods | Solana](https://solana.com/docs/rpc/http)
 
 交易状态保证，划分了几个等级
 
@@ -1114,6 +1131,20 @@ RpcResponse 结构分为两部分：context 和 value
 [Add Solana to Your Exchange | Solana](https://solana.com/docs/more/exchange#listening-for-deposits) - This guide describes how to add Solana's native token SOL to your cryptocurrency exchange.
 
 这篇文章很有用，建议仔细读。
+
+## Next
+
+- Token Approve / Revoke & Wrapped SOL & [NFTs](https://solanacookbook.com/references/nfts.html) & [Metaplex](https://developers.metaplex.com/token-metadata) (its token metadata) & Token Upgrade Program
+
+- Memo Program & Name Service
+
+- Token Swap Program
+
+- Token Lending Program
+
+- Writing Program
+
+- Solana internal implementation & whitepaper
 
 ## SDK
 
@@ -1153,8 +1184,21 @@ RpcResponse 结构分为两部分：context 和 value
 - [Solana wiki](https://solana.wiki/docs/)
 - [Solana Pirate Bootcamp](https://github.com/solana-developers/pirate-bootcamp) - A pirate-theme bootcamp for getting up to speed on Solana programming!
 - [Solana dev tools](https://github.com/solana-developers/solana-tools)
+- [SolDev - Library](https://www.soldev.app/library)
 - [Solana Program Examples](https://github.com/solana-developers/program-examples) - A repository of Solana program examples
 - [Solana-Programming-Resources](https://github.com/SolanaNatives/Solana-Programming-Resources)
+
+
+
+Videos
+
+- [SolDev - Solana Bootcamp - Advanced](https://www.soldev.app/library/playlist/solana-bootcamp-advanced)
+
+- [SolDev - Solana Bootcamp Basics](https://www.soldev.app/library/playlist/solana-bootcamp-basics)
+
+- [教學Solana區塊鏈應用開發（1/7）-基礎入門簡介 YouTube](https://www.youtube.com/watch?v=h8ds-Q7wRrk)
+  
+  - [GitHub - solana-developers/pirate-bootcamp: A pirate-theme bootcamp for getting up to speed on Solana programming!](https://github.com/solana-developers/pirate-bootcamp?tab=readme-ov-file)
 
 ### Instruction
 
@@ -1179,3 +1223,5 @@ RpcResponse 结构分为两部分：context 和 value
 - [Solana Internals Part 3: The Transaction Processing Unit (TPU) | Sec3 Blog](https://www.sec3.dev/blog/solana-internals-part-3-the-transaction-processing-unit-tpu)
 
 - [Solana Internals Part 4: The Bank - A Key Component | Sec3 Blog](https://www.sec3.dev/blog/solana-internals-part-4-the-bank-a-key-component)
+
+- [Solana Validator 101: Transaction Processing | Jito Labs](https://www.jito.wtf/blog/solana-validator-101-transaction-processing/)
