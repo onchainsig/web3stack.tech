@@ -532,6 +532,8 @@ instruction 三要素：programId -> 11111111111111111111111111111111, accounts 
 
 我们已经知道 Program 是无状态的，但现实世界是有状态的、复杂的，PDA 就可以解决状态存储的问题。
 
+PDAs 是结合程序地址和开发者选择的一些种子，以创建存储单个数据片段的地址。由于 PDAs 是位于 Ed25519 椭圆曲线之外的地址，因此 PDAs 没有私钥。相反，PDAs 可以通过用于创建它们的程序地址进行签名。
+
 - PDA 是一个类似 public key 的 32 bytes 字符串，但是不存在一个 private key 和它对应，也就是 PDA 并不在 ed25519 curve 上
 
 - PDA 是确定性的，可以使用 programId 和 seeds 确定性的生成出来，所以我们可以在任何地方推导 PDA
@@ -727,29 +729,29 @@ pub enum TokenInstruction<'a> {
 ```go
 tx, err := types.NewTransaction(types.NewTransactionParam{
     Message: types.NewMessage(types.NewMessageParam{
-		FeePayer:        feePayer.PublicKey,
-		RecentBlockhash: recentBlockHashResp.Blockhash,
+        FeePayer:        feePayer.PublicKey,
+        RecentBlockhash: recentBlockHashResp.Blockhash,
 
         // 创建账户和初始化 mint 两个指令要放在同一个 transaction 中，这样更加安全
-		Instructions: []types.Instruction{    
-			// 创建 Mint 账户，New 字段指向新的 Mint 地址
+        Instructions: []types.Instruction{    
+            // 创建 Mint 账户，New 字段指向新的 Mint 地址
             system.CreateAccount(system.CreateAccountParam{
-				From:     feePayer.PublicKey,     // 支付 transaction fee 和 rent fee 的账户
-				New:      mint.PublicKey,         // 新创建的 Mint 账户地址
-				Owner:    common.TokenProgramID,  // 可以看到是指向 token program id
-				Lamports: rentExemptionBalance,   // 新创建的 mint 账户免租的最小金额，从 rpc method 获取
-				Space:    token.MintAccountSize,  // Mint 账户占用的空间大小，这个大小是固定的 82 bytes
-			}),
+                From:     feePayer.PublicKey,     // 支付 transaction fee 和 rent fee 的账户
+                New:      mint.PublicKey,         // 新创建的 Mint 账户地址
+                Owner:    common.TokenProgramID,  // 可以看到是指向 token program id
+                Lamports: rentExemptionBalance,   // 新创建的 mint 账户免租的最小金额，从 rpc method 获取
+                Space:    token.MintAccountSize,  // Mint 账户占用的空间大小，这个大小是固定的 82 bytes
+            }),
             // 初始化上面创建的 mint 账户，理论上只能被初始化一次
-			token.InitializeMint(token.InitializeMintParam{
-				Decimals:   8,                    // 新发的 token 的 decimals，也就是最小单位       
-				Mint:       mint.PublicKey,       // Mint 账户
-				MintAuth:   alice.PublicKey,      // 哪个账户地址有权限铸造新的 token
-				FreezeAuth: nil,                  // 哪个账户地址有权限冻结这个 token，可以不指定
-			}),
-		},
-	}),
-	Signers: []types.Account{feePayer, mint},
+            token.InitializeMint(token.InitializeMintParam{
+                Decimals:   8,                    // 新发的 token 的 decimals，也就是最小单位       
+                Mint:       mint.PublicKey,       // Mint 账户
+                MintAuth:   alice.PublicKey,      // 哪个账户地址有权限铸造新的 token
+                FreezeAuth: nil,                  // 哪个账户地址有权限冻结这个 token，可以不指定
+            }),
+        },
+    }),
+    Signers: []types.Account{feePayer, mint},
 })
 ```
 
@@ -777,19 +779,56 @@ curl http://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/js
 
 ##### Token Account
 
-SPL-Token 转移需要发送方和接收方都拥有要转移的代币铸造厂的 Token 账户；代币从发送方的 Token 账户转移到接收方的 Token 账户；当获取接收方的关联Token 账户以确保其在转移前存在时，您可以使用`getOrCreateAssociatedTokenAccount`。只需记住，如果账户尚不存在，则此函数将创建它，交易付款人将扣除所需的账户创建的 lamports。
+SPL-Token 转移需要发送方和接收方都拥有要转移的代币铸造厂的 Token 账户；代币从发送方的 Token 账户转移到接收方的 Token 账户；当获取接收方的关联Token 账户以确保其在转移前存在时，您可以使用 `getOrCreateAssociatedTokenAccount`。只需记住，如果账户尚不存在，则此函数将创建它，交易付款人将扣除所需的账户创建的 lamports。
+
+默认情况下，我们使用 ATA 作为 Token Account 的生成方式，这种约定会带来很多好处，比如我们不需要特意记录每个用户地址的 Token Account 有哪些，这样的账户太多了，维护起来非常麻烦，ATA 为我们解决了这个问题，可以看下面关于它的说明。
+
+在 Token Mint 账户创建完成后，需要创建一个 Token 账户来持有新发行的代币
+
+```go
+tx, err := types.NewTransaction(types.NewTransactionParam{
+    Message: types.NewMessage(types.NewMessageParam{
+        FeePayer:        feePayer.PublicKey,
+        RecentBlockhash: res.Blockhash,
+        Instructions: []types.Instruction{
+            // 使用 ATA Program 创建 账户
+            associated_token_account.Create(associated_token_account.CreateParam{
+                Funder:                 feePayer.PublicKey,    // 支付费用的账户
+                Owner:                  alice.PublicKey,       // Token 账户的拥有者，就是用户钱包地址
+                Mint:                   mintPubKey,            // token mint 地址，就是哪个 token
+                AssociatedTokenAccount: ata,                   // 被创建的 ATA 账户
+            }),
+        },
+    }),
+    Signers: []types.Account{feePayer},
+})
+
+// 构造指令
+data, err := borsh.Serialize(struct {
+		Instruction Instruction
+	}{
+		Instruction: InstructionCreate,
+	})
+types.Instruction{
+		ProgramID: common.SPLAssociatedTokenAccountProgramID, // ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL
+		Accounts: []types.AccountMeta{
+			{PubKey: param.Funder, IsSigner: true, IsWritable: true},
+			{PubKey: param.AssociatedTokenAccount, IsSigner: false, IsWritable: true},
+			{PubKey: param.Owner, IsSigner: false, IsWritable: false},
+			{PubKey: param.Mint, IsSigner: false, IsWritable: false},
+			{PubKey: common.SystemProgramID, IsSigner: false, IsWritable: false},
+			{PubKey: common.TokenProgramID, IsSigner: false, IsWritable: false},
+			// {PubKey: common.SysVarRentPubkey, IsSigner: false, IsWritable: false},
+		},
+		Data: data,
+	}
+```
 
 
-
-Token Mint 账户创建完成后，需要创建一个 Token 账户来持有新发行的代币
-
-PDA
-
-PDAs 是结合程序地址和开发者选择的一些种子，以创建存储单个数据片段的地址。由于 PDAs 是位于 Ed25519 椭圆曲线之外的地址，因此 PDAs 没有私钥。相反，PDAs 可以通过用于创建它们的程序地址进行签名。
 
 **关于 Associated Token Account Program**
 
-[ATA](https://spl.solana.com/associated-token-account) 是一种将钱包地址映射到关联的某个 token 账户的机制，主要作用简化了 Token Account 的维护。
+[ATA](https://spl.solana.com/associated-token-account) 是一种将钱包地址映射到关联的某个 token 账户的机制，主要作用简化了 Token Account 的维护；它是 PDA 的一种，确定了生成方式。
 
 从理论上来讲，一个用户针对某个 `token mint` 可以拥有任意多个 token accounts，这就引入了一个非常麻烦的事情，在发送 token 时我们很难知道其他人的 token account 是什么，从而为 token 管理引入了很多麻烦；ATA 引入了一种确定性的推导 token account 的机制，只需要使用用户的 System 账户地址和 token mint 地址结合在一起，确定性的创建一个 token account 出来，我们叫这类账户为关联 token 账户
 
@@ -865,15 +904,155 @@ pub enum AssociatedTokenAccountInstruction {
 
 ##### Mint To
 
--
+我们有了 Token Mint 和 Token Account，接下来就可以为 Token Account 供应代币，比如说初始供应的总量、增发等；这里我们考虑使用 TokenInstruction 的 `MintToChecked` 指令
+
+```rust
+ pub enum TokenInstruction<'a> {
+    /// Mints new tokens to an account.  The native mint does not support
+    /// minting.
+    ///
+    /// This instruction differs from MintTo in that the decimals value is
+    /// checked by the caller.  This may be useful when creating transactions
+    /// offline or within a hardware wallet.
+    ///
+    /// Accounts expected by this instruction:
+    ///
+    ///   * Single authority
+    ///   0. `[writable]` The mint.
+    ///   1. `[writable]` The account to mint tokens to.
+    ///   2. `[signer]` The mint's minting authority.
+    ///
+    ///   * Multisignature authority
+    ///   0. `[writable]` The mint.
+    ///   1. `[writable]` The account to mint tokens to.
+    ///   2. `[]` The mint's multisignature mint-tokens authority.
+    ///   3. ..3+M `[signer]` M signer accounts.
+    MintToChecked {
+        /// The amount of new tokens to mint.
+        amount: u64,
+        /// Expected number of base 10 digits to the right of the decimal place.
+        decimals: u8,
+    },
+ }
+```
+
+这里需要传入三个 Accounts，分别是
+
+1. Mint 地址
+
+2. 持有 Token 数量的 ATA 地址
+
+3. Token Mint 的 Authority 地址，在创建 Token Mint 的时候我们指定过这个 Authority，这里需要这个账户的签名
+
+然后是 instruction data 部分，需要传入铸造的 token 的数量，以及这个 Token 的 decimals，这里我们用的是 `MintToChecked`，需要去再次 check 这个 decimals 是否跟创建 Token Mint 时一致，如果不一致会错误返回，确保了错误发生。
+
+
 
 ##### Check Balance
 
--
+在铸造完 token 后，我们可以查询一下这个 ATA 的 token 数量，同样还是用 getAccountInfo method
+
+```shell
+curl https://api.devnet.solana.com -X POST -H "Content-Type: application/json" -d '
+  {
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "getAccountInfo",
+    "params": [
+      "2nrpwrAFwiAxAygUTjaUw9kErAke1nRnpL9iymbdkmsD",
+      {
+        "encoding": "jsonParsed"
+      }
+    ]
+  }
+'
+{"jsonrpc":"2.0","result":{"context":{"apiVersion":"1.18.11","slot":294002521},"value":{"data":{"parsed":{"info":{"isNative":false,"mint":"GeoWLwRr25dUpdDDqyFqcgk7m2MaJgw2VnSJGUfjFaXv","owner":"BKHLRxLPiNALhf5UejxqJKjGUWCf5uaWfMP6jxNsi1pM","state":"initialized","tokenAmount":{"amount":"100000000","decimals":8,"uiAmount":1.0,"uiAmountString":"1"}},"type":"account"},"program":"spl-token","space":165},"executable":false,"lamports":2039280,"owner":"TokenkegQfeZyiNwAJbNbGKPFXCWuBvf9Ss623VQ5DA","rentEpoch":18446744073709551615,"space":165}},"id":1}
+```
 
 ##### Token Transfer
 
--
+至此，Token 已经创建完成，并且做了初始的发行总量，Token Mint 的 Authority 地址拥有自己的 ATA，并且这个 ATA 保存了 token amount 的数据。
+
+回顾一下上面的基本组成
+
+<img src="../../assets/2024-04-23-10-24-48-image.png" title="" alt="" data-align="center">
+
+接下来，把 Alice 账户里的 SPL-Token 转移到 Bob 的账户里，首先必须确保 Bob 的 ATA 账户已经创建，否则需要先创建再转账
+
+1. 通过 `FindAssociatedTokenAddress` 得到 bob 的 ATA 账户，查询 bob's ATA 是否存在，如果不存在就创建它
+
+2. 把 token 转到 bob's ATA
+
+```go
+// 不存在的时候，创建 bob 的 ata
+types.NewTransaction(types.NewTransactionParam{
+		Message: types.NewMessage(types.NewMessageParam{
+			FeePayer:        feePayer.PublicKey,
+			RecentBlockhash: res.Blockhash,
+			Instructions: []types.Instruction{
+				associated_token_account.Create(associated_token_account.CreateParam{
+					Funder:                 feePayer.PublicKey,
+					Owner:                  bob,
+					Mint:                   mintPubKey,
+					AssociatedTokenAccount: bobATA,
+				}),
+			},
+		}),
+		Signers: []types.Account{feePayer},
+	})
+
+// 然后，转移 token 到 bob's ata
+types.NewTransaction(types.NewTransactionParam{
+		Message: types.NewMessage(types.NewMessageParam{
+			FeePayer:        feePayer.PublicKey,
+			RecentBlockhash: res.Blockhash,
+			Instructions: []types.Instruction{
+				token.TransferChecked(token.TransferCheckedParam{
+					From:     aliceTokenATAPubkey,       // 从哪个 ata 账户转 token
+					To:       bobATA,                    // 转到哪个 ata 账户
+					Mint:     mintPubKey,                // Token mint 的地址，也就是转的哪个 token
+					Auth:     alice.PublicKey,           // From ata 的 authority 账户，也就是指 data 里的那个 owner, 这个账户需要签名
+					Signers:  []common.PublicKey{},
+					Amount:   1e5,                       // 数量
+					Decimals: 8,                         // 单位
+				}),
+			},
+		}),
+		Signers: []types.Account{feePayer, alice},       // feePayer 和 alice 的签名
+	})
+
+
+// Instruction
+    /// Transfers tokens from one account to another either directly or via a
+    /// delegate.  If this account is associated with the native mint then equal
+    /// amounts of SOL and Tokens will be transferred to the destination
+    /// account.
+    ///
+    /// This instruction differs from Transfer in that the token mint and
+    /// decimals value is checked by the caller.  This may be useful when
+    /// creating transactions offline or within a hardware wallet.
+    ///
+    /// Accounts expected by this instruction:
+    ///
+    ///   * Single owner/delegate                     -- 这里说明了 accounts 的顺序，以及是否需要签名，是否可写等
+    ///   0. `[writable]` The source account.
+    ///   1. `[]` The token mint.
+    ///   2. `[writable]` The destination account.
+    ///   3. `[signer]` The source account's owner/delegate.
+    ///
+    ///   * Multisignature owner/delegate
+    ///   0. `[writable]` The source account.
+    ///   1. `[]` The token mint.
+    ///   2. `[writable]` The destination account.
+    ///   3. `[]` The source account's multisignature owner/delegate.
+    ///   4. ..4+M `[signer]` M signer accounts.
+    TransferChecked {
+        /// The amount of tokens to transfer.
+        amount: u64,
+        /// Expected number of base 10 digits to the right of the decimal place.
+        decimals: u8,
+    },
+```
 
 #### Reference
 
