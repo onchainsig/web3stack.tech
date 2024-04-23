@@ -805,26 +805,24 @@ tx, err := types.NewTransaction(types.NewTransactionParam{
 
 // 构造指令
 data, err := borsh.Serialize(struct {
-		Instruction Instruction
-	}{
-		Instruction: InstructionCreate,
-	})
+        Instruction Instruction
+    }{
+        Instruction: InstructionCreate,
+    })
 types.Instruction{
-		ProgramID: common.SPLAssociatedTokenAccountProgramID, // ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL
-		Accounts: []types.AccountMeta{
-			{PubKey: param.Funder, IsSigner: true, IsWritable: true},
-			{PubKey: param.AssociatedTokenAccount, IsSigner: false, IsWritable: true},
-			{PubKey: param.Owner, IsSigner: false, IsWritable: false},
-			{PubKey: param.Mint, IsSigner: false, IsWritable: false},
-			{PubKey: common.SystemProgramID, IsSigner: false, IsWritable: false},
-			{PubKey: common.TokenProgramID, IsSigner: false, IsWritable: false},
-			// {PubKey: common.SysVarRentPubkey, IsSigner: false, IsWritable: false},
-		},
-		Data: data,
-	}
+        ProgramID: common.SPLAssociatedTokenAccountProgramID, // ATokenGPvbdGVxr1b2hvZbsiqW5xWH25efTNsLJA8knL
+        Accounts: []types.AccountMeta{
+            {PubKey: param.Funder, IsSigner: true, IsWritable: true},
+            {PubKey: param.AssociatedTokenAccount, IsSigner: false, IsWritable: true},
+            {PubKey: param.Owner, IsSigner: false, IsWritable: false},
+            {PubKey: param.Mint, IsSigner: false, IsWritable: false},
+            {PubKey: common.SystemProgramID, IsSigner: false, IsWritable: false},
+            {PubKey: common.TokenProgramID, IsSigner: false, IsWritable: false},
+            // {PubKey: common.SysVarRentPubkey, IsSigner: false, IsWritable: false},
+        },
+        Data: data,
+    }
 ```
-
-
 
 **关于 Associated Token Account Program**
 
@@ -946,8 +944,6 @@ pub enum AssociatedTokenAccountInstruction {
 
 然后是 instruction data 部分，需要传入铸造的 token 的数量，以及这个 Token 的 decimals，这里我们用的是 `MintToChecked`，需要去再次 check 这个 decimals 是否跟创建 Token Mint 时一致，如果不一致会错误返回，确保了错误发生。
 
-
-
 ##### Check Balance
 
 在铸造完 token 后，我们可以查询一下这个 ATA 的 token 数量，同样还是用 getAccountInfo method
@@ -986,40 +982,40 @@ curl https://api.devnet.solana.com -X POST -H "Content-Type: application/json" -
 ```go
 // 不存在的时候，创建 bob 的 ata
 types.NewTransaction(types.NewTransactionParam{
-		Message: types.NewMessage(types.NewMessageParam{
-			FeePayer:        feePayer.PublicKey,
-			RecentBlockhash: res.Blockhash,
-			Instructions: []types.Instruction{
-				associated_token_account.Create(associated_token_account.CreateParam{
-					Funder:                 feePayer.PublicKey,
-					Owner:                  bob,
-					Mint:                   mintPubKey,
-					AssociatedTokenAccount: bobATA,
-				}),
-			},
-		}),
-		Signers: []types.Account{feePayer},
-	})
+        Message: types.NewMessage(types.NewMessageParam{
+            FeePayer:        feePayer.PublicKey,
+            RecentBlockhash: res.Blockhash,
+            Instructions: []types.Instruction{
+                associated_token_account.Create(associated_token_account.CreateParam{
+                    Funder:                 feePayer.PublicKey,
+                    Owner:                  bob,
+                    Mint:                   mintPubKey,
+                    AssociatedTokenAccount: bobATA,
+                }),
+            },
+        }),
+        Signers: []types.Account{feePayer},
+    })
 
 // 然后，转移 token 到 bob's ata
 types.NewTransaction(types.NewTransactionParam{
-		Message: types.NewMessage(types.NewMessageParam{
-			FeePayer:        feePayer.PublicKey,
-			RecentBlockhash: res.Blockhash,
-			Instructions: []types.Instruction{
-				token.TransferChecked(token.TransferCheckedParam{
-					From:     aliceTokenATAPubkey,       // 从哪个 ata 账户转 token
-					To:       bobATA,                    // 转到哪个 ata 账户
-					Mint:     mintPubKey,                // Token mint 的地址，也就是转的哪个 token
-					Auth:     alice.PublicKey,           // From ata 的 authority 账户，也就是指 data 里的那个 owner, 这个账户需要签名
-					Signers:  []common.PublicKey{},
-					Amount:   1e5,                       // 数量
-					Decimals: 8,                         // 单位
-				}),
-			},
-		}),
-		Signers: []types.Account{feePayer, alice},       // feePayer 和 alice 的签名
-	})
+        Message: types.NewMessage(types.NewMessageParam{
+            FeePayer:        feePayer.PublicKey,
+            RecentBlockhash: res.Blockhash,
+            Instructions: []types.Instruction{
+                token.TransferChecked(token.TransferCheckedParam{
+                    From:     aliceTokenATAPubkey,       // 从哪个 ata 账户转 token
+                    To:       bobATA,                    // 转到哪个 ata 账户
+                    Mint:     mintPubKey,                // Token mint 的地址，也就是转的哪个 token
+                    Auth:     alice.PublicKey,           // From ata 的 authority 账户，也就是指 data 里的那个 owner, 这个账户需要签名
+                    Signers:  []common.PublicKey{},
+                    Amount:   1e5,                       // 数量
+                    Decimals: 8,                         // 单位
+                }),
+            },
+        }),
+        Signers: []types.Account{feePayer, alice},       // feePayer 和 alice 的签名
+    })
 
 
 // Instruction
@@ -1054,6 +1050,22 @@ types.NewTransaction(types.NewTransactionParam{
     },
 ```
 
+More things todo:
+
+1. burn
+
+2. approve
+
+3. revoke
+
+4. freeze
+
+5. Multisig
+
+6. 探索更多关于 spl-token 的功能 https://spl.solana.com/token
+
+7. Metaplex token metadata
+
 #### Reference
 
 - [Programs | Solana Cookbook](https://solanacookbook.com/core-concepts/programs.html)
@@ -1061,6 +1073,14 @@ types.NewTransaction(types.NewTransactionParam{
 - [Program Derived Addresses (PDAs) | Solana Cookbook](https://solanacookbook.com/core-concepts/pdas.html) 
 
 - [Developing on-chain programs | Solana](https://solana.com/docs/programs)
+
+**深入了解 SPL token**
+
+- [Solana Programs Part 1: Understanding SPL Token Mint | Sec3 Blog](https://www.sec3.dev/blog/solana-programs-part-1-understanding-spl-token-mint)
+
+- [Solana Programs Part 2: Understanding SPL Associated Token Account | Sec3 Blog](https://www.sec3.dev/blog/solana-programs-part-2-understanding-spl-associated-token-account)
+
+- [Solana programs Part 3: understanding Metaplex Token Metadata | Sec3 Blog](https://www.sec3.dev/blog/solana-programs-part-3)
 
 ## Solana JSON RPC
 
@@ -1149,3 +1169,13 @@ RpcResponse 结构分为两部分：context 和 value
 ### Proposals
 
 - [Implemented Design Proposals](https://docs.solanalabs.com/implemented-proposals/)
+
+### Solana Internals
+
+- [Solana Internals Part 1: What Are the Native On-Chain Programs and Why Do They Matter? | Sec3 Blog](https://www.sec3.dev/blog/solana-internals-part-1-what-are-the-native-on-chain-programs-and-why-do-they-matter)
+
+- [Solana Internals Part 2: How Is a Solana Program Deployed and Upgraded | Sec3 Blog](https://www.sec3.dev/blog/solana-internals-part-2-how-is-a-solana-program-deployed-and-upgraded)
+
+- [Solana Internals Part 3: The Transaction Processing Unit (TPU) | Sec3 Blog](https://www.sec3.dev/blog/solana-internals-part-3-the-transaction-processing-unit-tpu)
+
+- [Solana Internals Part 4: The Bank - A Key Component | Sec3 Blog](https://www.sec3.dev/blog/solana-internals-part-4-the-bank-a-key-component)
