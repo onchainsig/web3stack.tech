@@ -497,6 +497,8 @@ instruction 三要素：programId -> 11111111111111111111111111111111, accounts 
 
 - [Solana Transactions in Depth](https://medium.com/@asmiller1989/solana-transactions-in-depth-1f7f7fe06ac2)
 
+- [Retrying Transactions | Solana](https://solana.com/docs/core/transactions/retry) - 分析了在广播交易时，需要开发人员处理重试的情况以及几种方式
+
 ### Program
 
 前面也多多少少提到了 Program，概括一下：Program 是 Solana 网络上的智能合约，可以让用户实现自定义的业务逻辑；Program 分为两类，一类是 Native Program，是 Solana 内置在节点中的一些具备基础能力的程序，比如 Vote，创建账户，SOL 转账等；一类是 On-chain Program，是由用户编写，用来实现特定目的，比如 Solana Program Library 里的 Token Program，是用来实现同质化代币和非同质化代币的程序，由 solana labs 开发并部署。
@@ -1187,8 +1189,6 @@ RpcResponse 结构分为两部分：context 和 value
 - [SolDev - Library](https://www.soldev.app/library)
 - [Solana Program Examples](https://github.com/solana-developers/program-examples) - A repository of Solana program examples
 - [Solana-Programming-Resources](https://github.com/SolanaNatives/Solana-Programming-Resources)
-
-
 
 Videos
 
