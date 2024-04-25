@@ -123,9 +123,7 @@ $ solana transfer ...
 
 ### Quick overview
 
-在更加深入了解 Solana 之前，可以通过教程快速的学习一些 Solana 的基础知识，可以考虑看 [Solana中文开发教程](https://www.solanazh.com/) 的 Week1, Week2, Week3 三个部分。
-
-如果还需要多了解一些的话，可以看看下面的资源：
+在更加深入了解 Solana 之前，可以通过教程快速的学习一些 Solana 的基础知识，可以看看下面的资源：
 
 - [There are no bad questions about... blockchain basics | Solana](https://solana.com/learn/blockchain-basics) - Solana 101, 从宏观层面介绍 Blockchain, 以及为什么开发了 Solana，简单了解即可
 
@@ -140,6 +138,8 @@ $ solana transfer ...
   - [Solana Fundamentals Reference Guide](https://www.quicknode.com/guides/solana-development/getting-started/solana-fundamentals-reference-guide) - QuickNode 上关于 Solana 的一些开发教程
 
 - 进阶资料
+  
+  - [Solana中文开发教程](https://www.solanazh.com/) 的 Week1, Week2, Week3 三个部分。
   
   - [SolDev - Solana Development Course](https://www.soldev.app/course)
   
@@ -184,11 +184,28 @@ pubKey := priKey.Public().(ed25519.PublicKey)
 
 address := base58.Encode(pubKey)
 fmt.Println(address)
+
+// Sign
+var messageBytes []byte
+ed25519.Sign(priKey, messageBytes)
 ```
 
 一些示例代码可以看 [wallet sample code](sol_wallet_code.md), 更多的详细内容可以参考 [keyparis and wallets](https://solanacookbook.com/references/keypairs-and-wallets.html#how-to-generate-a-new-keypair)
 
+```shell
+# 生成一个新的 keypair / wallet
+$ solana-keygen new --outfile a.json
+# 查看 pubkey
+$ solana-keygen pubkey a.json
+# 确认这个地址和私钥文件是对应的
+$ solana-keygen verify 8vqMJYm8AvagWwT9FT9NXtropqGXRjfbS8koKxn2mFEm a.json
+```
+
 ### Account Model
+
+现实世界是复杂的，试图解决现实问题的区块链亦是如此，对问题和数据的建模方式也各有不同。
+
+<img src="../../assets/2024-04-25-09-19-52-image.png" title="" alt="" data-align="center">
 
 在 Solana Network 中 `Everything is an Account` ，这是 Solana 组织数据的一种方式，有别于 Ethereum，举个例子，在 Ethereum 中，发行一个 ERC20 Token 时，会有一个智能合约地址，Token 相关的数据状态是跟这个合约绑定在一起的；而 Solana 则截然不同。
 
@@ -239,7 +256,7 @@ Solana 中的 Account 不仅仅存储普通地址(指那些由 ed25519 算法生
 
 <img title="" src="../../assets/2024-04-19-21-10-28-image.png" alt="" width="1048" data-align="center">
 
-上图是普通的地址账户跟 System Program 之间的关系，看下链上数据
+上图是普通的地址账户跟 System Program 之间的关系，我们也可以叫这类账户为 System Account，看下链上数据
 
 ```shell
 curl https://api.devnet.solana.com -X POST -H "Content-Type: application/json" -d '
