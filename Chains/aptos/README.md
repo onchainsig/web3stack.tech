@@ -7,16 +7,30 @@
 ### CLI 使用
 
 - [install](https://aptos.dev/tools/aptos-cli/install-cli/)
+
     ```sh
     brew install aptos
     ```
 - 初始化钱包
+
     ```sh
     aptos init
     ```
 - dev环境 领水 (1 APT = 100,000,000 Octas)
+
     ```sh
     aptos account fund-with-faucet --account default
+    ```
+- 查看账户余额信息
+
+    ```sh
+    aptos account list --query balance --account $your_profile_name
+    ```
+    *Tip: 初始化时未填写 profile name，则为默认账户 default*
+- 给某个账户转账 0.01 APT
+
+    ```sh
+    aptos account transfer --account $account_address  --amount 1000000
     ```
 
 ### Account
@@ -46,7 +60,7 @@
 
 - Move 是 Aptos 网络的底层开发语言，其运行时 MoveVM 和其他 XVM 的比较
 
-<img src='./assets/aptos-img01.png' width='500' />
+<img src='./assets/aptos-img01.png' width='600' />
 
 - Move module
     - 包含代码和类型声明，类似于 Solana 程序账户 / EVM contract Implementation (eg: ERC1967)
@@ -57,7 +71,7 @@
 
 - lifecycle
     
-    ![tx lifecycle](./assets/aptos-img02.png)
+    <img src='./assets/aptos-img02.png' width='500' />
     
 - 一笔交易的组成部分
     - signature, 私钥拥有者对交易的签名
