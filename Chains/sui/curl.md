@@ -30,4 +30,3 @@ curl --request POST \
 }
 '
 ```
-
