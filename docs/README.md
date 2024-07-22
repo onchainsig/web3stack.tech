@@ -4,8 +4,6 @@ Overview
 
 > 智能合约需要一个全新的工程思维，不同于以往项目的开发；因为它犯错的代价是巨大的，并且很难像传统软件那样轻易的打上补丁。
 
-
-
 ## Common
 
 - Gas limit & Gas used
@@ -16,6 +14,7 @@ Overview
 ## Contract library & framework
 
 - [OpenZeppelin](https://docs.openzeppelin.com/)
+
   - [Cairo contracts](https://github.com/OpenZeppelin/cairo-contracts)
 
 - [thirdweb contracts](https://github.com/thirdweb-dev/contracts)
@@ -30,7 +29,6 @@ Overview
 - **[useful-solidity-patterns](https://github.com/dragonfly-xyz/useful-solidity-patterns#useful-solidity-patterns) - This repo is an ongoing collection of useful, and occasionally clever, solidity/EVM patterns that actually get used in the wild.**
 - [web3 链上工具](https://www.oklink.com/cn/tools) - by OKLink
 - [vyper](vyper.md)
-
 
 ## Basic & Infrastructe
 
@@ -59,6 +57,10 @@ Overview
 
 - [EVM](evm/Readme.md)
 
+## Ethereum Data
+
+- [Ethereum data — Transaction Receipt Trie and Logs Simplified](https://medium.com/coinmonks/ethereum-data-transaction-receipt-trie-and-logs-simplified-30e3ae8dc3cf)
+
 ## Chain Features
 
 - [Chains](chains/README.md)
@@ -72,6 +74,7 @@ Overview
 ## EIP
 
 - [Abstract Account](eip/4337.md)
+
 ## Application
 
 - [Smart Contract Whitelist](application/whitelist.md)

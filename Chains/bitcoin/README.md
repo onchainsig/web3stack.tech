@@ -1,6 +1,6 @@
 # Bitcoin
 
-Bitcoin
+> [精通比特币第三版](https://berryjam.gitbook.io/mastering-bitcoin-3rd)
 
 WiP
 
@@ -10,11 +10,11 @@ WiP
 ## Tools
 
 - Bitcoin Wallet
-  
+
   - [Coinomi Wallet](https://www.coinomi.com/en/downloads/) 支持 testnet
 
 - Bitcoin Explorer
-  
+
   - https://explorer.btc.com/zh-CN
   - https://www.blockchain.com/explorer
   - https://blockstream.info/
@@ -22,11 +22,11 @@ WiP
   - https://mempool.space/zh/
 
 - 一些快捷查询
-  
-  - https://api.blockcypher.com/v1/btc/main/txs/1e547ce484af5066b8e6939130eeae48842749d5efc83429d285efc7e69f9033?limit=50&includeHex=true  -- 查询交易信息
+
+  - https://api.blockcypher.com/v1/btc/main/txs/1e547ce484af5066b8e6939130eeae48842749d5efc83429d285efc7e69f9033?limit=50&includeHex=true -- 查询交易信息
 
 - SDK
-  
+
   - [bitcoinj](https://bitcoinj.org/)
   - [bitcoin](https://github.com/bitcoin/bitcoin)
   - [bitcoinjs-lib](https://github.com/bitcoinjs/bitcoinjs-lib)
@@ -35,7 +35,7 @@ WiP
   - [OKX Go SDK](https://www.okx.com/cn/web3/build/docs/build-dapp/private-key-wallet-go-sdk)
 
 - Bitcoin QA
-  
+
   - [Bitcoin Reddit](https://www.reddit.com/r/Bitcoin/)
 
 ## Bitcoin Guide
@@ -72,9 +72,9 @@ https://medium.com/@CroutonDigital/crypto-testnet-faucet-list-d5d0bacec341
 
 - 转账费用
 
-隔离见证兼容地址（**部分3开头**）比传统地址（**1开头**）**节省 24%** 转账手续费；
-原生隔离见证地址（**bc1开头**）比传统地址（**1开头**）**节省 35%** 转账手续费；
-隔离见证地址（**bc1开头**和**部分3开头**） 比 **多签地址**（**部分3开头**），最多可以节省 70% 转账手续费；
+隔离见证兼容地址（**部分 3 开头**）比传统地址（**1 开头**）**节省 24%** 转账手续费；
+原生隔离见证地址（**bc1 开头**）比传统地址（**1 开头**）**节省 35%** 转账手续费；
+隔离见证地址（**bc1 开头**和**部分 3 开头**） 比 **多签地址**（**部分 3 开头**），最多可以节省 70% 转账手续费；
 
 总结：**bc1 开头的原生隔离见证地址，最省转账费用**。
 

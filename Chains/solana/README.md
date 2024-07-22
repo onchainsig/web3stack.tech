@@ -5,14 +5,14 @@
 最近在了解 Solana 区块链，相比于 Ethereum，它们之间的差异性还是很明显的，所以很有必要做个梳理和备忘。
 
 > https://solana.com/
-> 
+>
 > Solana is a decentralized blockchain built to enable scalable, user-friendly apps for the world.
 
 Solana 理论上每秒可处理的交易 (TPS) 高达 50000 笔，区块达到最终确认的时间仅需约 400 毫秒。 Solana 的终极目标，是证明可以让区块链的交易吞吐量随网络频宽按比例扩张，实现可快速扩充、安全、去中心化的三大特质。
 
 Solana is a blockchain built for mass adoption. It's a high performance network that is utilized for a range of use cases, including finance, NFTs, payments, and gaming. Solana operates as a single global state machine, and is open, interoperable and decentralized. (Solana 是一个专为大规模采用而构建的区块链。 它是一个高性能网络，可用于一系列用例，包括金融、NFT、支付和游戏。 Solana 作为单一的全球状态机运行，并且是开放的、可互操作的和去中心化的。)
 
-Furthermore, **lamports** is the smallest unit in the Solana network, 1 **SOL** is equal to 1,000,000,000 **lamports**. The name of **lamports** is in honour of Solana's biggest technical influence, [Leslie Lamport](https://en.wikipedia.org/wiki/Leslie_Lamport).  (1 SOL = 10^9 lamports)
+Furthermore, **lamports** is the smallest unit in the Solana network, 1 **SOL** is equal to 1,000,000,000 **lamports**. The name of **lamports** is in honour of Solana's biggest technical influence, [Leslie Lamport](https://en.wikipedia.org/wiki/Leslie_Lamport). (1 SOL = 10^9 lamports)
 
 简言之，Solana 是一个类似于 Ethereum 的功能强大、支持智能合约、去中心化、开放的区块链网络，目前被广泛使用。
 
@@ -20,25 +20,25 @@ Furthermore, **lamports** is the smallest unit in the Solana network, 1 **SOL** 
 
 通过下面的表格可以了解一些 Solana 的基本信息。
 
-| Official Site              | [https://solana.com/](https://solana.com/zh)                                                                                                                                                                                                                                                                                                                                                                                                                |
-|:-------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| White Paper                | 如果想对 Solana 的设计初衷、共识机制等有所了解，先看白皮书<br/> https://solana.com/solana-whitepaper.pdf                                                                                                                                                                                                                                                                                                                                                                             |
-| Consensus                  | DPoS & PoH                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
-| Features                   | High Performance                                                                                                                                                                                                                                                                                                                                                                                                                                            |
-| Block Time                 | 400 ms                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
-| Confirmation No.           | 1                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
-| Coin                       | SOL                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Unit                       | lamports                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
-| Precision                  | 10^9  (1 SOL = 10^9 lamports)                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| Address case-sensitive     | Yes                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| Address regular expression | ^[1-9A-HJ-NP-Za-km-z]{32,44}$                                                                                                                                                                                                                                                                                                                                                                                                                               |
-| Token Support              | Yes (SPL Token)                                                                                                                                                                                                                                                                                                                                                                                                                                             |
-| Program or Smart Contract  | Yes, written by Rust                                                                                                                                                                                                                                                                                                                                                                                                                                        |
-| RPC Endpoints              | 1. Custom  net  solana-test-validator <br />2. Devnet [https://api.devnet.solana.com](https://api.devnet.solana.com/) <br />3. Testnet [https://api.testnet.solana.com](https://api.testnet.solana.com/)<br />4. Mainnet (Beta)<br /> [https://api.mainnet-beta.solana.com](https://api.mainnet-beta.solana.com/)<br /> [https://solana-api.projectserum.com](https://solana-api.projectserum.com/)<br />@see https://docs.solana.com/cluster/rpc-endpoints |
-| Explorer                   | [http://explorer.solana.com/](https://explorer.solana.com/)<br />[http://solana.fm/](https://solana.fm/)<br />[http://solscan.io/](https://solscan.io/)<br />http://solanabeach.io/<br />http://validators.app/                                                                                                                                                                                                                                             |
-| Testnet Explorer           | https://explorer.solana.com/?cluster=testnet                                                                                                                                                                                                                                                                                                                                                                                                                |
-| 加密算法                       | ed25519                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| 公钥 / 地址                    | public key in base58                                                                                                                                                                                                                                                                                                                                                                                                                                        |
+| Official Site              | [https://solana.com/](https://solana.com/zh)                                                                                                                                                                                                                                                                                                                                                                                                              |
+| :------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| White Paper                | 如果想对 Solana 的设计初衷、共识机制等有所了解，先看白皮书<br/> https://solana.com/solana-whitepaper.pdf                                                                                                                                                                                                                                                                                                                                                  |
+| Consensus                  | DPoS & PoH                                                                                                                                                                                                                                                                                                                                                                                                                                                |
+| Features                   | High Performance                                                                                                                                                                                                                                                                                                                                                                                                                                          |
+| Block Time                 | 400 ms                                                                                                                                                                                                                                                                                                                                                                                                                                                    |
+| Confirmation No.           | 1                                                                                                                                                                                                                                                                                                                                                                                                                                                         |
+| Coin                       | SOL                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Unit                       | lamports                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
+| Precision                  | 10^9 (1 SOL = 10^9 lamports)                                                                                                                                                                                                                                                                                                                                                                                                                              |
+| Address case-sensitive     | Yes                                                                                                                                                                                                                                                                                                                                                                                                                                                       |
+| Address regular expression | ^[1-9A-HJ-NP-Za-km-z]{32,44}$                                                                                                                                                                                                                                                                                                                                                                                                                             |
+| Token Support              | Yes (SPL Token)                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| Program or Smart Contract  | Yes, written by Rust                                                                                                                                                                                                                                                                                                                                                                                                                                      |
+| RPC Endpoints              | 1. Custom net solana-test-validator <br />2. Devnet [https://api.devnet.solana.com](https://api.devnet.solana.com/) <br />3. Testnet [https://api.testnet.solana.com](https://api.testnet.solana.com/)<br />4. Mainnet (Beta)<br /> [https://api.mainnet-beta.solana.com](https://api.mainnet-beta.solana.com/)<br /> [https://solana-api.projectserum.com](https://solana-api.projectserum.com/)<br />@see https://docs.solana.com/cluster/rpc-endpoints |
+| Explorer                   | [http://explorer.solana.com/](https://explorer.solana.com/)<br />[http://solana.fm/](https://solana.fm/)<br />[http://solscan.io/](https://solscan.io/)<br />http://solanabeach.io/<br />http://validators.app/                                                                                                                                                                                                                                           |
+| Testnet Explorer           | https://explorer.solana.com/?cluster=testnet                                                                                                                                                                                                                                                                                                                                                                                                              |
+| 加密算法                   | ed25519                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
+| 公钥 / 地址                | public key in base58                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 
 ## Core Concepts
 
@@ -113,7 +113,7 @@ $ solana genesis-hash
 $ solana airdrop 100
 
 # Query the balance
-$ solana balance 
+$ solana balance
 
 # Next
 $ solana transfer ...
@@ -128,21 +128,21 @@ $ solana transfer ...
 - [There are no bad questions about... blockchain basics | Solana](https://solana.com/learn/blockchain-basics) - Solana 101, 从宏观层面介绍 Blockchain, 以及为什么开发了 Solana，简单了解即可
 
 - [Solana Documentation | Solana](https://solana.com/docs) - 这个是 Solana 的 Documentation，包含了 Solana 中非常核心的一些知识，推荐看一下
-  
+
   - 可以先从它的 **Getting started** 入手，有个基本的了解
-  
+
   - 然后看 **Start learning**, 理解 Solana 中几个非常核心的东西：**transactions**, **accounts**, **programs** 等
-  
+
   - 如果对 Ethereum 有一点了解的话，可以配合着 [Documentation | Solana Wiki](https://solana.wiki/docs/) 一起看看
-  
+
   - [Solana Fundamentals Reference Guide](https://www.quicknode.com/guides/solana-development/getting-started/solana-fundamentals-reference-guide) - QuickNode 上关于 Solana 的一些开发教程
 
 - 进阶资料
-  
-  - [Solana中文开发教程](https://www.solanazh.com/) 的 Week1, Week2, Week3 三个部分。
-  
+
+  - [Solana 中文开发教程](https://www.solanazh.com/) 的 Week1, Week2, Week3 三个部分。
+
   - [SolDev - Solana Development Course](https://www.soldev.app/course)
-  
+
   - [solana-course/README.md at main · Unboxed-Software/solana-course · GitHub](https://github.com/Unboxed-Software/solana-course/blob/main/README.md)
 
 看完上面的一些资料，应该有很多疑问，接下来深入分析 Solana 里的一些核心的知识，方便我们开发基于 Solana 的 Wallet。
@@ -160,7 +160,7 @@ $ solana transfer ...
 - 签名算法 `ed25519`
 
 - Private key 的存储形式
-  
+
   - 本质是一个大数，并且可以用 byte 序列的形式表示，512 bits
   - bytes - 字节序列，一般存储在一个文件中
   - base58 - base58 编码后的形式
@@ -168,7 +168,7 @@ $ solana transfer ...
   - 助记词推导 (核心思想是 seed): bip39, bip44
 
 - Address 是 Public Key 的 base58 编码形式
-  
+
   - HD Address
 
 ```go
@@ -238,8 +238,8 @@ Solana 中的 Account 不仅仅存储普通地址(指那些由 ed25519 算法生
 - lamports - 当前账户的 sol 余额
 
 - owner - 当前账户归属的程序账户
-  
-  - This field stores the address of an on-chain program and represents *which* on-chain program is allowed to *write* to the account’s data and subtract from its lamport balance. (该字段存储链上程序的地址，表示允许哪个链上程序写入账户数据并从其 lamports 余额中减去)
+
+  - This field stores the address of an on-chain program and represents _which_ on-chain program is allowed to _write_ to the account’s data and subtract from its lamport balance. (该字段存储链上程序的地址，表示允许哪个链上程序写入账户数据并从其 lamports 余额中减去)
   - 通俗点说就是只有 owner 才可以减掉该账户的 lamports 余额，或者修改 data 数据；其他任何程序都可以增加一个账户的 lamports
 
 - executable - 当前账户是否是可执行的，只有程序账户才是 true，数据账户是 false
@@ -247,11 +247,11 @@ Solana 中的 Account 不仅仅存储普通地址(指那些由 ed25519 算法生
 - data - 当前账户存储的原始数据，对于数据账户存储的是数据状态，而对于程序账户存储的是 executable code 或者一个指向存储了 executable code 的账户代理地址
 
 - rent_epoch - 这个字段存储的是当前账户在那个 epoch 会欠租金，意味着在那个 epoch 账户会被释放，数据会被 remove
-  
+
   - 在账户上存储数据是需要花费 SOL 的，所谓的租金；但是可以通过保持账户的最小余额相当于 2 年租金，账户可以免租金
-  
+
   - If the account does not have enough to pay rent, the account will be deallocated and the data removed.
-  
+
   - 关于 rent [What is rent? | Solana](https://solana.com/docs/core/rent)
 
 <img title="" src="../../assets/2024-04-19-21-10-28-image.png" alt="" width="1048" data-align="center">
@@ -283,9 +283,9 @@ curl https://api.devnet.solana.com -X POST -H "Content-Type: application/json" -
 其他类型的内置 Program
 
 - Sysvar - owner is Sysvar，用于加载区块状态，比如最近区块、当前的租金费用等
-- Native Program - owner is Native Loader, 用于表明原生程序，比如System、Stake、Vote 程序等
+- Native Program - owner is Native Loader, 用于表明原生程序，比如 System、Stake、Vote 程序等
 - BPF Program - owner is BPF Loader, 用于处理 BPF 字节码 (也就是用户部署的链上合约或者叫 program)
-  - BPF Loader Program 会把被部署的 program 标记 `executable=true`
+  - BPF Loader Program 会把被部署的 program 标记  `executable=true`
 
 ```shell
 curl http://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/json" -d '
@@ -321,15 +321,15 @@ curl http://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/js
 - [Accounts | Solana Cookbook](https://solanacookbook.com/core-concepts/accounts.html)
 
 - Program
-  
+
   - [Native Programs in the Solana Runtime](https://docs.solanalabs.com/runtime/programs)
-  
+
   - [Programs | Solana Cookbook](https://solanacookbook.com/core-concepts/programs.html)
-  
+
   - [What are Solana Programs? | Solana](https://solana.com/docs/core/programs)
-    
+
     - [Solana Token Program](https://spl.solana.com/)
-  
+
   - [Developing on-chain programs | Solana](https://solana.com/docs/programs)
 
 ### Transactions
@@ -343,9 +343,9 @@ curl http://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/js
 上图是一个 transction 的大致执行流程，可以分两个阶段看：
 
 - 阶段 1，program 的部署，这里分两种情况
-  
+
   - Solana 预先部署进去的，跟着 Solana Validator 和 Runtime 绑定在一起
-  
+
   - 由 DAPP 的开发人员自行编写 program 并部署到 Solana Network
 
 - 阶段 2，client 根据 program 的 instruction 规则构建一个交易，签名后发送给 Solana 区块链节点；然后 Solana Runtime 会根据内置的规则加载对应的可执行程序去执行指令，程序执行的过程中会修改相关的 Account lamports or data.
@@ -355,21 +355,21 @@ curl http://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/js
 <img title="" src="../../assets/2024-04-22-12-36-22-image.png" alt="" data-align="center">
 
 - Signatures
-  
+
   - ed25519 算法
-  
+
   - 对于签名，每个签名的长度是 64 bytes
 
 - Message
-  
+
   - Header
-  
+
   - Accounts
-  
+
   - Recent block hash: 32 bytes sha-256 hash
-    
+
     - The blockhash is used to prevent duplications and eliminate stale transactions. The max age of a transaction's blockhash is 150 blocks, or about ~1 minute 19 seconds as of the time of this writing.
-  
+
   - Instructions
 
 **Instruction**
@@ -398,7 +398,7 @@ pub struct Instruction {
 
 如何处理 instruction data，可以看这个 [Serialize instruction data](https://www.soldev.app/course/serialize-instruction-data) & [Serializing Data | Solana Cookbook](https://solanacookbook.com/guides/serialization.html#setting-up-for-borsh-serialization)
 
->  Exactly *how* this data would be structured would depend on how the program was written, **but it’s common to have the first field in instruction data be a number that the program can map to a function, after which additional fields act as function arguments**.
+> Exactly _how_ this data would be structured would depend on how the program was written, **but it’s common to have the first field in instruction data be a number that the program can map to a function, after which additional fields act as function arguments**.
 
 instruction data 序列化的通用做法是使用一个数字放在最前边，用来映射链上程序的功能函数，后续的数据作为函数参数。Solana 中针对 On-chain program 常用的序列化方式是 [borsh](https://borsh.io/).
 
@@ -424,20 +424,20 @@ type Transaction struct {
 
 - [Transaction Prioritization Fees | Solana](https://solana.com/docs/intro/transaction_fees#prioritization-fee)
 
-- [Transaction Fees | Solana](https://solana.com/docs/core/transactions/fees) 
+- [Transaction Fees | Solana](https://solana.com/docs/core/transactions/fees)
 
-- [Overview of the Solana Runtime | Solana](https://solana.com/docs/core/runtime?ref=blog.quicknode.com#compute-budget) 
+- [Overview of the Solana Runtime | Solana](https://solana.com/docs/core/runtime?ref=blog.quicknode.com#compute-budget)
 
 - [How to get your transactions finalized on Solana](https://blog.quicknode.com/solana-transaction-efficiency-priority-fees/)
 
-- https://www.quicknode.com/guides/solana-development/transactions/how-to-optimize-solana-transactions 
+- https://www.quicknode.com/guides/solana-development/transactions/how-to-optimize-solana-transactions
 
 ##### Nonce Account
 
 用来解决 RecentBlockHash 很快过期的问题，一般 150 个 block 以内，大概是 1m20s 以内
 
 - [Sending Offline Transactions - Durable Nonce | Solana Cookbook](https://solanacookbook.com/references/offline-transactions.html#durable-nonce)
-- [Durable Nonce | Solana Development With Go](https://blocto.github.io/solana-go-sdk/advanced/durable-nonce/) 
+- [Durable Nonce | Solana Development With Go](https://blocto.github.io/solana-go-sdk/advanced/durable-nonce/)
 
 #### Transfer SOL
 
@@ -531,13 +531,13 @@ instruction 三要素：programId -> 11111111111111111111111111111111, accounts 
 - 任何的 Program 都可以读取其他账户，并且也可以向其他账户转账
 
 - Program 是无状态的，它的 data 字段存储的是被 BPF 编译后的可执行代码
-  
+
   - 状态数据存储在其他的 Account 中，这些 Account 和这个 Program 存在一定的关系
-  
+
   - 比如要存储 Program 的一个全局状态，我们可以结合 programId 和一个特殊字符串，编码后使用 sha256 hash 得到一个地址，用来存放这个全局数据
 
 - On-chain Program 的 owner 是 [BPF Loader](https://docs.solanalabs.com/runtime/programs#bpf-loader)，并且被 Solana Runtime 执行
-  
+
   - BPF Loader Prgram ID: `BPFLoaderUpgradeab1e11111111111111111111111`
 
 - Program 可以更新它自己的 owner
@@ -547,11 +547,11 @@ instruction 三要素：programId -> 11111111111111111111111111111111, accounts 
 - Program 可以处理来自用户的 instructions，也可以处理来自其他 program 的
 
 - 每个 Program 都有一个唯一的入口点 (entrypoint)，这里是处理指令的入口，参数像这样
-  
+
   - program_id: pubkey
-  
+
   - accounts: array
-  
+
   - instruction_data: byte array
 
 <img src="../../assets/2024-04-22-13-54-45-image.png" title="" alt="" data-align="center">
@@ -620,11 +620,11 @@ func CreateProgramAddress(seeds [][]byte, programId PublicKey) (PublicKey, error
 }
 ```
 
-[Program Derived Addresses (PDAs) | Solana Cookbook](https://solanacookbook.com/core-concepts/pdas.html#facts) 
+[Program Derived Addresses (PDAs) | Solana Cookbook](https://solanacookbook.com/core-concepts/pdas.html#facts)
 
 #### SPL Token
 
->  通过发行 SPL Token 例子来加深对 Account, Transaction, Program 的理解。
+> 通过发行 SPL Token 例子来加深对 Account, Transaction, Program 的理解。
 
 首先，SPL Token 类似于 Ethereum 里的 ERC20 Token 和 ERC721 Token，它是 Solana 区块链中特有的概念，SPL Token 是一个由 Solana Labs 开发的 On-Chain Program (Smart Contract)，并且由 Solana Labs 部署在区块链上供其他人使用，也可以说 SPL Token 就是 Solana 的 Token 标准。
 
@@ -763,7 +763,7 @@ tx, err := types.NewTransaction(types.NewTransactionParam{
         RecentBlockhash: recentBlockHashResp.Blockhash,
 
         // 创建账户和初始化 mint 两个指令要放在同一个 transaction 中，这样更加安全
-        Instructions: []types.Instruction{    
+        Instructions: []types.Instruction{
             // 创建 Mint 账户，New 字段指向新的 Mint 地址
             system.CreateAccount(system.CreateAccountParam{
                 From:     feePayer.PublicKey,     // 支付 transaction fee 和 rent fee 的账户
@@ -774,7 +774,7 @@ tx, err := types.NewTransaction(types.NewTransactionParam{
             }),
             // 初始化上面创建的 mint 账户，理论上只能被初始化一次
             token.InitializeMint(token.InitializeMintParam{
-                Decimals:   8,                    // 新发的 token 的 decimals，也就是最小单位       
+                Decimals:   8,                    // 新发的 token 的 decimals，也就是最小单位
                 Mint:       mint.PublicKey,       // Mint 账户
                 MintAuth:   alice.PublicKey,      // 哪个账户地址有权限铸造新的 token
                 FreezeAuth: nil,                  // 哪个账户地址有权限冻结这个 token，可以不指定
@@ -809,7 +809,7 @@ curl http://api.mainnet-beta.solana.com -X POST -H "Content-Type: application/js
 
 ##### Token Account
 
-SPL-Token 转移需要发送方和接收方都拥有要转移的代币铸造厂的 Token 账户；代币从发送方的 Token 账户转移到接收方的 Token 账户；当获取接收方的关联Token 账户以确保其在转移前存在时，您可以使用 `getOrCreateAssociatedTokenAccount`。只需记住，如果账户尚不存在，则此函数将创建它，交易付款人将扣除所需的账户创建的 lamports。
+SPL-Token 转移需要发送方和接收方都拥有要转移的代币铸造厂的 Token 账户；代币从发送方的 Token 账户转移到接收方的 Token 账户；当获取接收方的关联 Token 账户以确保其在转移前存在时，您可以使用 `getOrCreateAssociatedTokenAccount`。只需记住，如果账户尚不存在，则此函数将创建它，交易付款人将扣除所需的账户创建的 lamports。
 
 默认情况下，我们使用 ATA 作为 Token Account 的生成方式，这种约定会带来很多好处，比如我们不需要特意记录每个用户地址的 Token Account 有哪些，这样的账户太多了，维护起来非常麻烦，ATA 为我们解决了这个问题，可以看下面关于它的说明。
 
@@ -1100,7 +1100,7 @@ More things todo:
 
 - [Programs | Solana Cookbook](https://solanacookbook.com/core-concepts/programs.html)
 
-- [Program Derived Addresses (PDAs) | Solana Cookbook](https://solanacookbook.com/core-concepts/pdas.html) 
+- [Program Derived Addresses (PDAs) | Solana Cookbook](https://solanacookbook.com/core-concepts/pdas.html)
 
 - [Developing on-chain programs | Solana](https://solana.com/docs/programs)
 
@@ -1122,7 +1122,7 @@ More things todo:
 
 交易状态保证，划分了几个等级
 
-- finalized 
+- finalized
 - confirmed
 - processed
 
@@ -1130,16 +1130,16 @@ confirmed 可以平衡速度和安全性，finalized 是更加安全的级别。
 
 RpcResponse 结构分为两部分：context 和 value
 
-某些方法支持 encoding 参数，可以返回 account 
+某些方法支持 encoding 参数，可以返回 account
 
 在 Solana 中，slot 类似于 block height 的概念，可以等同使用
 
 - getSlot - 返回到达了给定的 commitment 级别的最新 slot
 - getBlock - 根据 slot 获取 block 信息，可以指定 commitment, encoding，返回值包括 transactions 列表
   - 获取 txHash: $.transactions[i].transaction.signatures[0]
-  - 判断状态：$.transactions[i].meta.err  or  $.transactions[i].meta.status { Err | Ok}
-  - $.transactions[i].meta.preBalances[]  数组是交易处理之前的账户余额
-  - $.transactions[i].meta.postBalances[]  数组是交易处理之后的账户余额
+  - 判断状态：$.transactions[i].meta.err or $.transactions[i].meta.status { Err | Ok}
+  - $.transactions[i].meta.preBalances[] 数组是交易处理之前的账户余额
+  - $.transactions[i].meta.postBalances[] 数组是交易处理之后的账户余额
   - $.transactions[i].transaction.message.accountKeys[] 数组是 pubkeys
   - preBalances.length == postBalances.length == pubkeys.length
   - $.transactions[i].meta.preTokenBalances[]
@@ -1169,19 +1169,19 @@ RpcResponse 结构分为两部分：context 和 value
 
 - Golang
   - https://github.com/gagliardetto/solana-go - Go SDK library and RPC client for the Solana Blockchain, there is currently **no stable release**.
-  - https://github.com/blocto/solana-go-sdk - https://blocto.github.io/solana-go-sdk/  √
+  - https://github.com/blocto/solana-go-sdk - https://blocto.github.io/solana-go-sdk/ √
 - Java
   - https://github.com/sol4k/sol4k - Kotlin, Java, and Android client for Solana.
   - https://github.com/skynetcap/solanaj - Solana RPC client written in Java
 - js
-  - https://solana-labs.github.io/solana-web3.js/  - 官方出品，借鉴参考
+  - https://solana-labs.github.io/solana-web3.js/ - 官方出品，借鉴参考
   - https://solana.com/docs/clients/javascript-reference
 - Rust
   - https://solana.com/docs/clients/rust
 
 ## Reference
 
-- [Solana Cookbook](https://solanacookbook.com/) - The *Solana Cookbook* is a developer resource that provides the essential concepts and references for building applications on Solana. Each concept and reference will focus on specific aspects of Solana development while providing additional details and usage examples.
+- [Solana Cookbook](https://solanacookbook.com/) - The _Solana Cookbook_ is a developer resource that provides the essential concepts and references for building applications on Solana. Each concept and reference will focus on specific aspects of Solana development while providing additional details and usage examples.
 - [Solana Documentation](https://solana.com/docs) - Solana is a blockchain built for mass adoption. It's a high performance network that is utilized for a range of use cases, including finance, NFTs, payments, and gaming. Solana operates as a single global state machine, and is open, interoperable and decentralized.
   - [Solana Validator Documentation](https://docs.solanalabs.com/)
 - Github
@@ -1213,8 +1213,8 @@ Videos
 
 - [SolDev - Solana Bootcamp Basics](https://www.soldev.app/library/playlist/solana-bootcamp-basics)
 
-- [教學Solana區塊鏈應用開發（1/7）-基礎入門簡介 YouTube](https://www.youtube.com/watch?v=h8ds-Q7wRrk)
-  
+- [教學 Solana 區塊鏈應用開發（1/7）-基礎入門簡介 YouTube](https://www.youtube.com/watch?v=h8ds-Q7wRrk)
+
   - [GitHub - solana-developers/pirate-bootcamp: A pirate-theme bootcamp for getting up to speed on Solana programming!](https://github.com/solana-developers/pirate-bootcamp?tab=readme-ov-file)
 
 ### Instruction
@@ -1242,3 +1242,5 @@ Videos
 - [Solana Internals Part 4: The Bank - A Key Component | Sec3 Blog](https://www.sec3.dev/blog/solana-internals-part-4-the-bank-a-key-component)
 
 - [Solana Validator 101: Transaction Processing | Jito Labs](https://www.jito.wtf/blog/solana-validator-101-transaction-processing/)
+
+- [Sealevel — Parallel Processing Thousands of Smart Contracts](https://medium.com/solana-labs/sealevel-parallel-processing-thousands-of-smart-contracts-d814b378192) - Understand 1 of 8 key technologies that make Solana the most performant blockchain in the world.
