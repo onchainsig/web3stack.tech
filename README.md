@@ -1,4 +1,4 @@
-# contracts
+# Web3 stack
 
 Smart Contracts SIG.
 
