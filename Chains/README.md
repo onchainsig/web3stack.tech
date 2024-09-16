@@ -12,6 +12,7 @@ Chainlist info can see: [chainlist](chainlist.md)
 ## EVM Chains
 
 - Ethereum
+  - 以太坊客户端的 Rust 实现：[Reth](Reth.md)
 - Ploygon
 - Binance Smart Chain
 - L2
