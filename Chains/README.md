@@ -26,3 +26,7 @@ Chainlist info can see: [chainlist](chainlist.md)
 - [Bitcoin](bitcoin/README.md)
 - Solana
 - ...
+
+## Build Your Own Chain
+
+- [Build a blockchain](build-blockchain.md)
